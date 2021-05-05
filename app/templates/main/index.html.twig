@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_recent'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h2>{{ 'title_recent'|trans }}</h2>
+    {% if data is defined and data|length %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'label_id'|trans }}</th>
+                <th>{{ 'label_title'|trans }}</th>
+                <th>{{ 'label_category'|trans }}</th>
+                <th>{{ 'label_tags'|trans }}</th>
+                <th scope="col">
+                    {{ 'label_actions'|trans }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.tags|join(', ') }}</td>
+                    <td>
+                        <a href="{{ absolute_url(item.id) }}">show</a>
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>
+            {{ 'message_empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock  %}
