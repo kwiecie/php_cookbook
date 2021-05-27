@@ -5,7 +5,7 @@
 
 namespace App\Controller;
 
-use App\Repository\MainPageRepository;
+use App\Repository\RecordRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,27 +13,27 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class RecordController.php.
  *
- * @Route("/")
+ * @Route("/record")
  */
-class MainPageController extends AbstractController
+class RecordController extends AbstractController
 {
     /**
      * Index action.
      *
-     * @param \App\Repository\MainPageRepository $repository Record repository
+     * @param \App\Repository\RecordRepository $repository Record repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
      *     "/",
      *     methods={"GET"},
-     *     name="main_index",
+     *     name="record_index",
      * )
      */
-    public function index(MainPageRepository $repository): Response
+    public function index(RecordRepository $repository): Response
     {
         return $this->render(
-            'main/index.html.twig',
+            'record/index.html.twig',
             ['data' => $repository->findAll()]
         );
     }
@@ -41,22 +41,22 @@ class MainPageController extends AbstractController
     /**
      * Show action.
      *
-     * @param \App\Repository\MainPageRepository $repository Record repository
+     * @param \App\Repository\RecordRepository $repository Record repository
      * @param int                              $id         Record id
      *
      * @Route(
      *     "/{id}",
      *     methods={"GET"},
-     *     name="main_show",
+     *     name="record_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      */
-    public function show(MainPageRepository $repository, int $id): Response
+    public function show(RecordRepository $repository, int $id): Response
     {
         return $this->render(
-            'main/show.html.twig',
+            'record/show.html.twig',
             ['item' => $repository->findById($id)]
         );
     }
