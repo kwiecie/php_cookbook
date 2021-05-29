@@ -1,52 +1,51 @@
 <?php
 /**
- * Recipe controller.
+ * Tag Controller.
  */
 
 namespace App\Controller;
 
-use App\Entity\Recipe;
-use App\Repository\RecipeRepository;
-use App\Form\RecipeType;
+use App\Entity\Tag;
+use App\Repository\TagRepository;
+use App\Form\TagType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class RecipeController.
+ * Class CategoryController.
  *
- * @Route("/")
+ * @Route("/tag")
  */
-class RecipeController extends AbstractController
+class TagController extends AbstractController
 {
     /**
      * Index action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \App\Repository\RecipeRepository $recipeRepository Recipe repository
-     * @param \Knp\Component\Pager\Pagination\PaginationInterface $paginator
+     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
+     * @param \App\Repository\TagRepository             $tagRepository Tag repository
+     * @param \Knp\Component\Pager\PaginatorInterface   $paginator          Paginator
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
      *     "/",
      *     methods={"GET"},
-     *     name="recipe_index",
+     *     name="tag_index",
      * )
      */
-    public function index(Request $request, RecipeRepository $recipeRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request, TagRepository $tagRepository, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $recipeRepository->queryAll(),
+            $tagRepository->queryAll(),
             $request->query->getInt('page', 1),
-            RecipeRepository::PAGINATOR_ITEMS_PER_PAGE
+            TagRepository::PAGINATOR_ITEMS_PER_PAGE
         );
 
         return $this->render(
-            'recipe/index.html.twig',
+            'tag/index.html.twig',
             ['pagination' => $pagination]
         );
     }
@@ -54,29 +53,29 @@ class RecipeController extends AbstractController
     /**
      * Show action.
      *
-     * @param \App\Entity\Recipe $recipe Recipe entity
+     * @param \App\Entity\Tag $tag Tag entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
      *     "/{id}",
      *     methods={"GET"},
-     *     name="recipe_show",
+     *     name="tag_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
      */
-    public function show(Recipe $recipe): Response
+    public function show(Tag $tag): Response
     {
         return $this->render(
-            'recipe/show.html.twig',
-            ['recipe' => $recipe]
+            'tag/show.html.twig',
+            ['tag' => $tag]
         );
     }
     /**
      * Create action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Repository\RecipeRepository        $recipeRepository Recipe repository
+     * @param \App\Repository\TagRepository             $tagRepository Tag repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -86,26 +85,27 @@ class RecipeController extends AbstractController
      * @Route(
      *     "/create",
      *     methods={"GET", "POST"},
-     *     name="recipe_create",
+     *     name="tag_create",
      * )
      */
-    public function create(Request $request, RecipeRepository $recipeRepository): Response
+    public function create(Request $request, TagRepository $tagRepository): Response
     {
-        $recipe = new Recipe();
-        $form = $this->createForm(RecipeType::class, $recipe);
+        $tag = new Tag();
+        $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $recipe->setCreatedAt(new \DateTime());
-            $recipeRepository->save($recipe);
+            //$category->setCreatedAt(new \DateTime());
+            //$category->setUpdatedAt(new \DateTime());
+            $tagRepository->save($tag);
 
             $this->addFlash('success', 'message_created_successfully');
 
-            return $this->redirectToRoute('recipe_index');
+            return $this->redirectToRoute('tag_index');
         }
 
         return $this->render(
-            'recipe/create.html.twig',
+            'tag/create.html.twig',
             ['form' => $form->createView()]
         );
     }
@@ -113,8 +113,8 @@ class RecipeController extends AbstractController
      * Edit action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Entity\Recipe                     $recipe           Recipe entity
-     * @param \App\Repository\RecipeRepository       $recipeRepository Recipe repository
+     * @param \App\Entity\Tag                           $tag           Tag entity
+     * @param \App\Repository\TagRepository             $tagRepository Tag repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -125,27 +125,28 @@ class RecipeController extends AbstractController
      *     "/{id}/edit",
      *     methods={"GET", "PUT"},
      *     requirements={"id": "[1-9]\d*"},
-     *     name="recipe_edit",
+     *     name="tag_edit",
      * )
      */
-    public function edit(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
+    public function edit(Request $request, Tag $tag, TagRepository $tagRepository): Response
     {
-        $form = $this->createForm(RecipeType::class, $recipe, ['method' => 'PUT']);
+        $form = $this->createForm(TagType::class, $tag, ['method' => 'PUT']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $recipeRepository->save($recipe);
+            //$category->setUpdatedAt(new \DateTime());
+            $tagRepository->save($tag);
 
             $this->addFlash('success', 'message_updated_successfully');
 
-            return $this->redirectToRoute('recipe_index');
+            return $this->redirectToRoute('tag_index');
         }
 
         return $this->render(
-            'recipe/edit.html.twig',
+            'tag/edit.html.twig',
             [
                 'form' => $form->createView(),
-                'recipe' => $recipe,
+                'tag' => $tag,
             ]
         );
     }
@@ -154,8 +155,8 @@ class RecipeController extends AbstractController
      * Delete action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Entity\Recipe                      $recipe           Recipe entity
-     * @param \App\Repository\RecipeRepository      $recipeRepository Recipe repository
+     * @param \App\Entity\Tag                           $tag           Tag entity
+     * @param \App\Repository\TagRepository             $tagRepository Tag repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -166,12 +167,12 @@ class RecipeController extends AbstractController
      *     "/{id}/delete",
      *     methods={"GET", "DELETE"},
      *     requirements={"id": "[1-9]\d*"},
-     *     name="recipe_delete",
+     *     name="tag_delete",
      * )
      */
-    public function delete(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
+    public function delete(Request $request, Tag $tag, TagRepository $tagRepository): Response
     {
-        $form = $this->createForm(RecipeType::class, $recipe, ['method' => 'DELETE']);
+        $form = $this->createForm(TagType::class, $tag, ['method' => 'DELETE']);
         $form->handleRequest($request);
 
         if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
@@ -179,17 +180,17 @@ class RecipeController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $recipeRepository->delete($recipe);
+            $tagRepository->delete($tag);
             $this->addFlash('success', 'message.deleted_successfully');
 
-            return $this->redirectToRoute('recipe_index');
+            return $this->redirectToRoute('tag_index');
         }
 
         return $this->render(
-            'recipe/delete.html.twig',
+            'tag/delete.html.twig',
             [
                 'form' => $form->createView(),
-                'recipe' => $recipe,
+                'tag' => $tag,
             ]
         );
     }

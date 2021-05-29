@@ -1,25 +1,22 @@
 <?php
 /**
- * Recipe type.
+ * Tag type.
  */
 
 namespace App\Form;
 
-use App\Entity\Recipe;
-use App\Entity\Category;
 use App\Entity\Tag;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class RecipeType.
+ * Class TagType.
  * @package App\Form
  */
 
-class RecipeType extends AbstractType
+class TagType extends AbstractType
 {
     /**
      * Builds the form.
@@ -43,43 +40,6 @@ class RecipeType extends AbstractType
                 'attr' => ['max_length' => 64],
             ]
         );
-        $builder->add(
-            'description',
-            TextType::class,
-            [
-                'label' => 'label_description',
-                'required' => true,
-                'attr' => ['max_length' => 255],
-            ]
-        );
-        $builder->add(
-            'category',
-            EntityType::class,
-            [
-                'class' => Category::class,
-                'choice_label' => function ($category) {
-                    return $category->getTitle();
-                },
-                'label' => 'label_category',
-                'placeholder' => 'label_none',
-                'required' => true,
-            ]
-        );
-        $builder->add(
-            'tags',
-            EntityType::class,
-            [
-                'class' => Tag::class,
-                'choice_label' => function ($tag) {
-                    return $tag->getTitle();
-                },
-                'label' => 'label_tags',
-                'placeholder' => 'label_none',
-                'required' => false,
-                'expanded' => true,
-                'multiple' => true,
-            ]
-        );
     }
 
     /**
@@ -89,7 +49,7 @@ class RecipeType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Recipe::class]);
+        $resolver->setDefaults(['data_class' => Tag::class]);
     }
 
     /**
@@ -102,6 +62,6 @@ class RecipeType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'recipe';
+        return 'tag';
     }
 }

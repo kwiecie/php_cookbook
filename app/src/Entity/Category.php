@@ -2,6 +2,7 @@
 /**
  * Category entity.
  */
+
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;

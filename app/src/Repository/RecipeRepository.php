@@ -5,12 +5,13 @@
 namespace App\Repository;
 
 use App\Entity\Recipe;
-use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
 
 /**
+ * Class RecipeRepository.
+ *
  * @method Recipe|null find($id, $lockMode = null, $lockVersion = null)
  * @method Recipe|null findOneBy(array $criteria, array $orderBy = null)
  * @method Recipe[]    findAll()
@@ -38,6 +39,35 @@ class RecipeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Recipe::class);
     }
+
+    /**
+     * Save record.
+     *
+     * @param \App\Entity\Recipe $recipe Recipe entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Recipe $recipe): void
+    {
+        $this->_em->persist($recipe);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete record.
+     *
+     * @param \App\Entity\Recipe $recipe Recipe entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Recipe $recipe): void
+    {
+        $this->_em->remove($recipe);
+        $this->_em->flush();
+    }
+
     /**
      * Query all records.
      *

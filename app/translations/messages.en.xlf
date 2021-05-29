@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="action_back_to_list">
                 <source>action_back_to_list</source>
-                <target>Back to the list</target>
+                <target>Back to list</target>
             </trans-unit>
             <trans-unit id="action_create">
                 <source>action_create</source>
@@ -94,6 +94,10 @@
                 <source>message_empty_list</source>
                 <target>Empty list.</target>
             </trans-unit>
+            <trans-unit id="message_updated_successfully">
+                <source>message_updated_successfully</source>
+                <target>Updated successfully!</target>
+            </trans-unit>
             <trans-unit id="title_category_create">
                 <source>title_category_create</source>
                 <target>Create a category</target>
@@ -110,6 +114,10 @@
                 <source>title_recipe_details</source>
                 <target>Recipe details #%id%</target>
             </trans-unit>
+            <trans-unit id="title_recipe_edit">
+                <source>title_recipe_edit</source>
+                <target>Recipe edit #%id%</target>
+            </trans-unit>
             <trans-unit id="title_recipe_list">
                 <source>title_recipe_list</source>
                 <target>Recipe list</target>
@@ -121,6 +129,10 @@
             <trans-unit id="title_recent">
                 <source>title_recent</source>
                 <target>Recent recipes</target>
+            </trans-unit>
+            <trans-unit id="title_tag_list">
+                <source>title_tag_list</source>
+                <target>Tags list</target>
             </trans-unit>
         </body>
     </file>

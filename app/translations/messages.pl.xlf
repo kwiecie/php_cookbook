@@ -96,7 +96,7 @@
             </trans-unit>
             <trans-unit id="message_updated_successfully">
                 <source>message_updated_successfully</source>
-                <target>Edytowanie</target>
+                <target>Pomyślnie zaktualizowano!</target>
             </trans-unit>
             <trans-unit id="title_category_details">
                 <source>title_category_details</source>

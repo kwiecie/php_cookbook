@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title_recipe_list'|trans }}
+    {{ 'title_tag_list'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_recipe_list'|trans }}</h1>
+    <h1>{{ 'title_tag_list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -15,34 +15,34 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'recipe.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_created_at'|trans, 'recipe.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'recipe.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'recipe.category') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'tag.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_created_at'|trans, 'tag.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_updated_at'|trans, 'tag.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'tag.title') }}</th>
                 <th>{{ 'action_view'|trans }}</th>
                 <th>{{ 'action_edit'|trans }}</th>
                 <th>{{ 'action_delete'|trans }}</th>
             </tr>
             </thead>
             <tbody>
-            {% for recipe in pagination.items %}
+            {% for tag in pagination.items %}
                 <tr>
-                    <td>{{ recipe.id }}</td>
-                    <td>{{ recipe.createdAt|format_date('long') }}</td>
-                    <td>{{ recipe.title }}</td>
-                    <td>{{ recipe.category.title }}</td>
+                    <td>{{ tag.id }}</td>
+                    <td>{{ tag.createdAt|format_date('long') }}</td>
+                    <td>{{ tag.updatedAt|format_date('long') }}</td>
+                    <td>{{ tag.title }}</td>
                     <td>
-                        <a href="{{ url('recipe_show', {id: recipe.id}) }}" title="{{ 'action_view'|trans }}">
+                        <a href="{{ url('tag_show', {id: tag.id}) }}" title="{{ 'action_view'|trans }}">
                             {{ 'action_view'|trans }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ url('recipe_edit', {id: recipe.id}) }}" title="{{ 'action_edit'|trans }}">
+                        <a href="{{ url('tag_edit', {id: tag.id}) }}" title="{{ 'action_edit'|trans }}">
                             {{ 'action_edit'|trans }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ url('recipe_delete', {id: recipe.id}) }}" title="{{ 'action_delete'|trans }}">
+                        <a href="{{ url('tag_delete', {id: tag.id}) }}" title="{{ 'action_delete'|trans }}">
                             {{ 'action_delete'|trans }}
                         </a>
                     </td>
@@ -55,7 +55,7 @@
             {{ knp_pagination_render(pagination) }}
         </div>
         <button>
-            <a href="{{ url('recipe_create') }}">
+            <a href="{{ url('tag_create') }}">
                 {{ 'action_create'|trans }}
             </a>
         </button>

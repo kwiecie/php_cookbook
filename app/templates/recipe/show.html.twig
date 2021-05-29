@@ -14,8 +14,12 @@
             <dd>{{ recipe.createdAt|date('Y/m/d') }}</dd>
             <dt>{{ 'label_title'|trans }}</dt>
             <dd>{{  recipe.title }}</dd>
+            <dt>{{ 'label_tags'|trans }}</dt>
+            <dd>{{  recipe.category.title }}</dd>
             <dt>{{ 'label_description'|trans }}</dt>
             <dd>{{  recipe.description }}</dd>
+            <dt>{{ 'label_tags'|trans }}</dt>
+            <dd>{{  recipe.tag.title }}</dd>
         </dl>
         <p>
             <a href="{{ url('recipe_index') }}" title="{{ 'action_back_to_list'|trans }}">
