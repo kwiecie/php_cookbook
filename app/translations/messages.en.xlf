@@ -18,25 +18,13 @@
                 <source>action_edit</source>
                 <target>Edit</target>
             </trans-unit>
+            <trans-unit id="action_save">
+                <source>action_save</source>
+                <target>Save</target>
+            </trans-unit>
             <trans-unit id="action_view">
                 <source>action_view</source>
                 <target>View</target>
-            </trans-unit>
-            <trans-unit id="category_desserts">
-                <source>category_desserts</source>
-                <target>Desserts</target>
-            </trans-unit>
-            <trans-unit id="category_maincourses">
-                <source>category_maincourses</source>
-                <target>Main courses</target>
-            </trans-unit>
-            <trans-unit id="category_salads">
-                <source>category_salads</source>
-                <target>Salads</target>
-            </trans-unit>
-            <trans-unit id="category_soups">
-                <source>category_soups</source>
-                <target>Soups</target>
             </trans-unit>
             <trans-unit id="label_actions">
                 <source>label_actions</source>
@@ -90,9 +78,21 @@
                 <source>label_updated_at</source>
                 <target>Updated at</target>
             </trans-unit>
+            <trans-unit id="message_category_contains_recipes">
+                <source>message_category_contains_recipes</source>
+                <target>Category contains recipes!</target>
+            </trans-unit>
             <trans-unit id="message_empty_list">
                 <source>message_empty_list</source>
                 <target>Empty list.</target>
+            </trans-unit>
+            <trans-unit id="message_form_error">
+                <source>message_form_error</source>
+                <target>Form error.</target>
+            </trans-unit>
+            <trans-unit id="message_item_not_found">
+                <source>message_item_not_found</source>
+                <target>Item not found!</target>
             </trans-unit>
             <trans-unit id="message_updated_successfully">
                 <source>message_updated_successfully</source>
@@ -102,13 +102,25 @@
                 <source>title_category_create</source>
                 <target>Create a category</target>
             </trans-unit>
+            <trans-unit id="title_category_delete">
+                <source>title_category_delete</source>
+                <target>Delete category #%id%</target>
+            </trans-unit>
             <trans-unit id="title_category_details">
                 <source>title_category_details</source>
                 <target>Category details</target>
             </trans-unit>
+            <trans-unit id="title_category_edit">
+                <source>title_category_edit</source>
+                <target>Edit category #%id%</target>
+            </trans-unit>
             <trans-unit id="title_category_list">
                 <source>title_category_list</source>
                 <target>Category list</target>
+            </trans-unit>
+            <trans-unit id="title_recipe_create">
+                <source>title_recipe_create</source>
+                <target>Create recipe</target>
             </trans-unit>
             <trans-unit id="title_recipe_details">
                 <source>title_recipe_details</source>
@@ -129,6 +141,18 @@
             <trans-unit id="title_recent">
                 <source>title_recent</source>
                 <target>Recent recipes</target>
+            </trans-unit>
+            <trans-unit id="title_tag_create">
+                <source>title_tag_create</source>
+                <target>Create tag</target>
+            </trans-unit>
+            <trans-unit id="title_tag_details">
+                <source>title_tag_details</source>
+                <target>Tag details #%id%</target>
+            </trans-unit>
+            <trans-unit id="title_tag_edit">
+                <source>title_tag_edit</source>
+                <target>Edit tag #%id%</target>
             </trans-unit>
             <trans-unit id="title_tag_list">
                 <source>title_tag_list</source>

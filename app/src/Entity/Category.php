@@ -5,24 +5,28 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Category.
  *
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\Table(name="categories")
+ *
+ * @UniqueEntity(fields={"title"})
  */
 class Category
 {
     /**
      * Id.
      *
-     * @var integer
+     * @var int
      *
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -33,9 +37,11 @@ class Category
     /**
      * Created at.
      *
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      *
      * @ORM\Column(type="datetime")
+     *
+     * @Assert\Type(type="\DateTimeInterface")
      *
      * @Gedmo\Timestampable(on="create")
      */
@@ -44,9 +50,11 @@ class Category
     /**
      * Updated at.
      *
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      *
      * @ORM\Column(type="datetime")
+     *
+     * @Assert\Type(type="\DateTimeInterface")
      *
      * @Gedmo\Timestampable(on="update")
      */
@@ -55,24 +63,54 @@ class Category
     /**
      * Title.
      *
-     * @ORM\Column(type="string", length=64)
+     * @var string
+     *
+     * @ORM\Column(
+     *     type="string",
+     *     length=64,
+     * )
+     *
+     * @Assert\Type (type="string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="64",
+     *     )
      */
     private $title;
 
     /**
      * Code.
      *
-     * @ORM\Column(type="string", length=64)
+     * @var string
+     *
+     * @ORM\Column(
+     *     type="string",
+     *     length=64,
+     *     )
+     *
+     * @Assert\Type(type="string")
+     * @Assert\Length(
+     *     min="3",
+     *     max="64",
+     *     )
      *
      * @Gedmo\Slug(fields={"title"})
      */
     private $code;
 
     /**
+     * Recipes.
+     *
+     * @var  \Doctrine\Common\Collections\ArrayCollection|\App\Entity\Recipe[]
+     *
      * @ORM\OneToMany(targetEntity=Recipe::class, mappedBy="category")
      */
     private $recipes;
 
+    /**
+     * Category constructor.
+     */
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -91,9 +129,9 @@ class Category
     /**
      * Getter for Created At.
      *
-     * @return \DateTimeInterface|null Created at
+     * @return DateTimeInterface|null Created at
      */
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
@@ -103,7 +141,7 @@ class Category
      *
      * @param \DateTimeInterface $createdAt Created at
      */
-    public function setCreatedAt(\DateTimeInterface $createdAt): void
+    public function setCreatedAt(DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
 
@@ -113,7 +151,7 @@ class Category
      *
      * @return \DateTimeInterface|null Updated at
      */
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }
@@ -123,7 +161,7 @@ class Category
      *
      * @param \DateTimeInterface $updatedAt Updated at
      */
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): void
+    public function setUpdatedAt(DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -164,11 +202,9 @@ class Category
      * @param string $code
      * @return $this
      */
-    public function setCode(string $code): self
+    public function setCode(string $code): void
     {
         $this->code = $code;
-
-        return $this;
     }
 
     /**
@@ -179,14 +215,12 @@ class Category
         return $this->recipes;
     }
 
-    public function addRecipe(Recipe $recipe): self
+    public function addRecipe(Recipe $recipe): void
     {
         if (!$this->recipes->contains($recipe)) {
             $this->recipes[] = $recipe;
             $recipe->setCategory($this);
         }
-
-        return $this;
     }
 
     public function removeRecipe(Recipe $recipe): self

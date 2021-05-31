@@ -172,6 +172,12 @@ class CategoryController extends AbstractController
      */
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {
+        if ($category->getRecipes()->count()) {
+            $this->addFlash('warning', 'message_category_contains_recipes');
+
+            return $this->redirectToRoute('category_index');
+        }
+
         $form = $this->createForm(CategoryType::class, $category, ['method' => 'DELETE']);
         $form->handleRequest($request);
 
@@ -181,7 +187,7 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->delete($category);
-            $this->addFlash('success', 'message.deleted_successfully');
+            $this->addFlash('success', 'message_deleted_successfully');
 
             return $this->redirectToRoute('category_index');
         }

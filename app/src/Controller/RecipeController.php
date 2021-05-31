@@ -168,8 +168,7 @@ class RecipeController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      *     name="recipe_delete",
      * )
-     */
-    public function delete(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
+     */    public function delete(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
     {
         $form = $this->createForm(RecipeType::class, $recipe, ['method' => 'DELETE']);
         $form->handleRequest($request);

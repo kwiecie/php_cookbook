@@ -27,7 +27,7 @@
         "symfony/serializer-pack": "*",
         "symfony/translation": "*",
         "symfony/twig-pack": "*",
-        "symfony/validator": "*",
+        "symfony/validator": "4.4.*",
         "symfony/web-link": "*",
         "symfony/yaml": "*",
         "twig/intl-extra": "^3.3"

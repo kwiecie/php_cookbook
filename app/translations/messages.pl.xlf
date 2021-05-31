@@ -18,25 +18,13 @@
                 <source>action_edit</source>
                 <target>Edytuj</target>
             </trans-unit>
+            <trans-unit id="action_save">
+                <source>action_save</source>
+                <target>Zapisz</target>
+            </trans-unit>
             <trans-unit id="action_view">
                 <source>action_view</source>
                 <target>Wyświetl</target>
-            </trans-unit>
-            <trans-unit id="category_desserts">
-                <source>category_desserts</source>
-                <target>Desery</target>
-            </trans-unit>
-            <trans-unit id="category_maincourses">
-                <source>category_maincourses</source>
-                <target>Dania główne</target>
-            </trans-unit>
-            <trans-unit id="category_salads">
-                <source>category_salads</source>
-                <target>Sałatki</target>
-            </trans-unit>
-            <trans-unit id="category_soups">
-                <source>category_soups</source>
-                <target>Zupy</target>
             </trans-unit>
             <trans-unit id="label_actions">
                 <source>label_actions</source>
@@ -94,21 +82,45 @@
                 <source>message_empty_list</source>
                 <target>Pusta lista.</target>
             </trans-unit>
+            <trans-unit id="message_form_error">
+                <source>message_form_error</source>
+                <target>Błąd formularza.</target>
+            </trans-unit>
+            <trans-unit id="message_item_not_found">
+                <source>message_item_not_found</source>
+                <target>Nie znaleziono obiektu!</target>
+            </trans-unit>
             <trans-unit id="message_updated_successfully">
                 <source>message_updated_successfully</source>
                 <target>Pomyślnie zaktualizowano!</target>
+            </trans-unit>
+            <trans-unit id="title_category_create">
+                <source>title_category_create</source>
+                <target>Utwórz kategorię</target>
             </trans-unit>
             <trans-unit id="title_category_details">
                 <source>title_category_details</source>
                 <target>Szczegóły kategorii</target>
             </trans-unit>
+            <trans-unit id="title_category_edit">
+                <source>title_category_edit</source>
+                <target>Edytuj kategorię #%id%</target>
+            </trans-unit>
             <trans-unit id="title_category_list">
                 <source>title_category_list</source>
                 <target>Lista kategorii</target>
             </trans-unit>
+            <trans-unit id="title_recipe_create">
+                <source>title_recipe_create</source>
+                <target>Utwórz przepis</target>
+            </trans-unit>
             <trans-unit id="title_recipe_details">
                 <source>title_recipe_details</source>
                 <target>Szczegóły przepisu #%id%</target>
+            </trans-unit>
+            <trans-unit id="title_recipe_edit">
+                <source>title_recipe_edit</source>
+                <target>Edytuj przepis #%id%</target>
             </trans-unit>
             <trans-unit id="title_recipe_list">
                 <source>title_recipe_list</source>
@@ -121,6 +133,22 @@
             <trans-unit id="title_recent">
                 <source>title_recent</source>
                 <target>Najnowsze przepisy</target>
+            </trans-unit>
+            <trans-unit id="title_tag_create">
+                <source>title_tag_create</source>
+                <target>Utwórz tag</target>
+            </trans-unit>
+            <trans-unit id="title_tag_details">
+                <source>title_tag_details</source>
+                <target>Szczegóły tagu #%id%</target>
+            </trans-unit>
+            <trans-unit id="title_tag_edit">
+                <source>title_tag_edit</source>
+                <target>Edytuj tag #%id%</target>
+            </trans-unit>
+            <trans-unit id="title_tag_list">
+                <source>title_tag_list</source>
+                <target>Lista tagów</target>
             </trans-unit>
         </body>
     </file>

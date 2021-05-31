@@ -6,6 +6,7 @@
 namespace App\Entity;
 
 use App\Repository\TagRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -113,7 +114,7 @@ class Tag
     /**
      * Getter for Created At.
      *
-     * @return DateTimeInterface|null
+     * @return \DateTimeInterface|null Created at
      */
     public function getCreatedAt(): ?DateTimeInterface
     {
@@ -123,7 +124,7 @@ class Tag
     /**
      * Setter for Created At.
      *
-     * @param \DateTimeInterface $createdAt
+     * @param \DateTimeInterface $createdAt Created at
      */
     public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
