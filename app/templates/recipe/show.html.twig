@@ -21,11 +21,16 @@
             <dt>{{ 'label_tags'|trans }}</dt>
 
         </dl>
-        <p>
+        <button>
             <a href="{{ url('recipe_index') }}" title="{{ 'action_back_to_list'|trans }}">
                 {{ 'action_back_to_list'|trans }}
             </a>
-        </p>
+        </button>
+        <button>
+            <a href="{{ url('comment_create') }}" title="{{ 'comment'|trans }}">
+                {{ 'comment'|trans }}
+            </a>
+        </button>
     {% else %}
         <p>
             {{ 'message_item_not_found'|trans }}

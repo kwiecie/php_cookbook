@@ -1,24 +1,23 @@
 <?php
 /**
- * Category repository.
+ * Comment repository.
  */
-
 namespace App\Repository;
 
-use App\Entity\Category;
+use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * Class CategoryRepository.
+ * Class CommentRepository.
  *
- * @method Category|null find($id, $lockMode = null, $lockVersion = null)
- * @method Category|null findOneBy(array $criteria, array $orderBy = null)
- * @method Category[]    findAll()
- * @method Category[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Comment|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Comment|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Comment[]    findAll()
+ * @method Comment[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategoryRepository extends ServiceEntityRepository
+class CommentRepository extends ServiceEntityRepository
 {
     /**
      * Items per page.
@@ -32,12 +31,12 @@ class CategoryRepository extends ServiceEntityRepository
     const PAGINATOR_ITEMS_PER_PAGE = 5;
 
     /**
-     * CategoryRepository constructor.
+     * CommentRepository constructor.
      * @param ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Category::class);
+        parent::__construct($registry, Comment::class);
     }
 
     /**
@@ -47,8 +46,8 @@ class CategoryRepository extends ServiceEntityRepository
      */
     public function queryAll(): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
-            ->orderBy('category.updatedAt', 'DESC');
+        return $this->getOrCreatedQueryBuilder()
+            ->orderBy('comment.createdAt', 'DESC');
     }
 
     /**
@@ -60,39 +59,39 @@ class CategoryRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('category');
+        return $queryBuilder ?? $this->createQueryBuilder('comment');
     }
 
     /**
      * Save record.
      *
-     * @param \App\Entity\Category $category Category entity
+     * @param \App\Entity\Comment $comment Comment entity
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function save(Category $category): void
+    public function save(Comment $comment): void
     {
-        $this->_em->persist($category);
+        $this->_em->persist($comment);
         $this->_em->flush();
     }
 
     /**
      * Delete record.
      *
-     * @param \App\Entity\Category $category Category entity
+     * @param \App\Entity\Comment $comment Comment entity
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function delete(Category $category): void
+    public function delete(Comment $comment): void
     {
-        $this->_em->remove($category);
+        $this->_em->remove($comment);
         $this->_em->flush();
     }
 
     // /**
-    //  * @return Category[] Returns an array of Category objects
+    //  * @return Comment[] Returns an array of Comment objects
     //  */
     /*
     public function findByExampleField($value)
@@ -109,7 +108,7 @@ class CategoryRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Category
+    public function findOneBySomeField($value): ?Comment
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

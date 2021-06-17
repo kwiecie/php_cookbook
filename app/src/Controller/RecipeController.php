@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class RecipeController.
  *
- * @Route("/")
+ * @Route("/recipe")
  */
 class RecipeController extends AbstractController
 {

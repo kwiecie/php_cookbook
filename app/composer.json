@@ -23,7 +23,7 @@
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
         "symfony/process": "*",
-        "symfony/security-bundle": "*",
+        "symfony/security-bundle": "4.4.*",
         "symfony/serializer-pack": "*",
         "symfony/translation": "*",
         "symfony/twig-pack": "*",

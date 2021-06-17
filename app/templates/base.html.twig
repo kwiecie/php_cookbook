@@ -19,7 +19,7 @@
     <h1 id="site_title"><a href="{{ absolute_url(' ') }}">cookbook.</a></h1>
         <nav class="nav_menu">
         <ul>
-            <li><a href=" ">{{ 'label_recipes'|trans }}</a></li>
+            <li><a href="/recipe">{{ 'label_recipes'|trans }}</a></li>
             <li><a href="/category">{{ 'label_categories'|trans }}</a></li>
             <li><a href="/tag">{{ 'label_tags'|trans }}</a></li>
             <li><a href="/signin">{{ 'label_sign_in' |trans }}</a></li>
@@ -33,6 +33,7 @@
     {% include 'default/_flash_messages.html.twig' %}
     {% block body %}{% endblock %}
 </div>
+
 
 {% block javascripts %}
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

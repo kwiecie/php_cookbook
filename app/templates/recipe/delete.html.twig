@@ -1,0 +1,11 @@
+{% include 'default/_form.html.twig' with {
+    page_title: 'title_recipe_delete',
+    page_title_param: {'%id%': recipe.id},
+    attr: {
+        method: 'DELETE',
+        action: url('recipe_delete', {'id': recipe.id}),
+    },
+    form: form,
+    submit_label: 'action_delete'|trans,
+    back_to_list_path: 'recipe_index',
+} %}

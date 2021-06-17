@@ -30,6 +30,10 @@
                 <source>label_actions</source>
                 <target>Akcje</target>
             </trans-unit>
+            <trans-unit id="label_author">
+                <source>label_author</source>
+                <target>Autor</target>
+            </trans-unit>
             <trans-unit id="label_categories">
                 <source>label_categories</source>
                 <target>Kategorie</target>
@@ -109,6 +113,10 @@
             <trans-unit id="title_category_list">
                 <source>title_category_list</source>
                 <target>Lista kategorii</target>
+            </trans-unit>
+            <trans-unit id="title_comment_create">
+                <source>title_comment_create</source>
+                <target>Utwórz komentarz</target>
             </trans-unit>
             <trans-unit id="title_recipe_create">
                 <source>title_recipe_create</source>
