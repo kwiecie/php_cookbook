@@ -9,6 +9,7 @@ use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use App\Form\CategoryType;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,6 +64,11 @@ class CategoryController extends AbstractController
      *     name="category_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
+     *
+     * @IsGranted(
+     *     "VIEW",
+     *     subject="category",
+     * )
      */
     public function show(Category $category): Response
     {
@@ -97,6 +103,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //$category->setCreatedAt(new \DateTime());
             //$category->setUpdatedAt(new \DateTime());
+            $category->setAuthor($this->getUser());
             $categoryRepository->save($category);
 
             $this->addFlash('success', 'message_created_successfully');
@@ -126,6 +133,11 @@ class CategoryController extends AbstractController
      *     methods={"GET", "PUT"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="category_edit",
+     * )
+     *
+     * @IsGranted(
+     *     "EDIT",
+     *     subject="category",
      * )
      */
     public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
@@ -168,6 +180,11 @@ class CategoryController extends AbstractController
      *     methods={"GET", "DELETE"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="category_delete",
+     * )
+     *
+     * @IsGranted(
+     *     "DELETE",
+     *     subject="category",
      * )
      */
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response

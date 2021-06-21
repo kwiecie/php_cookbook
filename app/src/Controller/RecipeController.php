@@ -9,6 +9,7 @@ use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
 use App\Form\RecipeType;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -88,6 +89,11 @@ class RecipeController extends AbstractController
      *     methods={"GET", "POST"},
      *     name="recipe_create",
      * )
+     *
+     * * @IsGranted(
+     *     "CREATE",
+     *     subject="recipe",
+     * )
      */
     public function create(Request $request, RecipeRepository $recipeRepository): Response
     {
@@ -127,6 +133,11 @@ class RecipeController extends AbstractController
      *     methods={"GET", "PUT"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="recipe_edit",
+     * )
+     *
+     * @IsGranted(
+     *     "EDIT",
+     *     subject="recipe",
      * )
      */
     public function edit(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
@@ -168,6 +179,11 @@ class RecipeController extends AbstractController
      *     methods={"GET", "DELETE"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="recipe_delete",
+     * )
+     *
+     * * @IsGranted(
+     *     "DELETE",
+     *     subject="recipe",
      * )
      */    public function delete(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
     {

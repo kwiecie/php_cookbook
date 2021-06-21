@@ -42,6 +42,10 @@
                 <source>label_category</source>
                 <target>Kategoria</target>
             </trans-unit>
+            <trans-unit id="label_comments">
+                <source>label_comments</source>
+                <target>Comments</target>
+            </trans-unit>
             <trans-unit id="label_content">
                 <source>label_content</source>
                 <target>Zawartość</target>

@@ -109,6 +109,16 @@ class Category
     private $recipes;
 
     /**
+     * Author.
+     *
+     * @var \App\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn (nullable=false)
+     */
+    private $author;
+
+    /**
      * Category constructor.
      */
     public function __construct()
@@ -233,5 +243,26 @@ class Category
         }
 
         return $this;
+    }
+
+    /**
+     * Getter for Author
+     *
+     * @return User|null
+     */
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    /**
+     * Setter for Author
+     *
+     * @param User|null $author
+     */
+    public function setAuthor(?User $author): void
+    {
+        $this->author = $author;
+
     }
 }
