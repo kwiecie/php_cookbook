@@ -5,6 +5,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Comment;
+use App\Entity\Recipe;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -13,7 +14,7 @@ use Doctrine\Persistence\ObjectManager;
  * Class CommentFixtures
  * @package App\DataFixtures
  */
-class CommentFixtures extends AbstractBaseFixtures
+class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
      * Load data.
@@ -28,10 +29,21 @@ class CommentFixtures extends AbstractBaseFixtures
             $comment->setContent($this->faker->text(200));
             $comment->setAuthor($this->faker->firstName);
             $comment->setEmail($this->faker->email);
+            $comment->setRecipe($this->getRandomReference('recipes'));
 
             return $comment;
         });
 
         $manager->flush();
+    }
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on.
+     *
+     * @return array Array of dependencies
+     */
+    public function getDependencies(): array
+    {
+        return [RecipeFixtures::class];
     }
 }

@@ -60,6 +60,12 @@ class Comment
     private $email;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Recipe::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $recipe;
+
+    /**
      * Getter for id.
      *
      * @return int|null
@@ -147,5 +153,25 @@ class Comment
     public function setEmail(string $email): void
     {
         $this->email = $email;
+    }
+
+    /**
+     * Getter for recipe
+     *
+     * @return Recipe|null
+     */
+    public function getRecipe(): ?Recipe
+    {
+        return $this->recipe;
+    }
+
+    /**
+     * Setter for recipe
+     *
+     * @param Recipe|null $recipe
+     */
+    public function setRecipe(?Recipe $recipe): void
+    {
+        $this->recipe = $recipe;
     }
 }

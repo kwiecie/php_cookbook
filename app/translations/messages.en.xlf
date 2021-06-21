@@ -18,6 +18,10 @@
                 <source>action_edit</source>
                 <target>Edit</target>
             </trans-unit>
+            <trans-unit id="action_logout">
+                <source>action_logout</source>
+                <target>Log out</target>
+            </trans-unit>
             <trans-unit id="action_save">
                 <source>action_save</source>
                 <target>Save</target>

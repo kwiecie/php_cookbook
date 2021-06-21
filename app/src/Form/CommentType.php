@@ -32,6 +32,22 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
+            'author',
+            TextType::class,
+            [
+                'label'=> 'label_author',
+                'required' => true,
+            ]
+        );
+        $builder->add(
+            'email',
+            TextType::class,
+            [
+                'label'=> 'label_email',
+                'required' => true,
+            ]
+        );
+        $builder->add(
             'content',
             TextType::class,
             [
@@ -40,14 +56,7 @@ class CommentType extends AbstractType
                 'attr' => ['max_length' => 255],
             ]
         );
-        $builder->add(
-            'author',
-            TextType::class,
-            [
-                'label'=> 'label_author',
-                'required' => true,
-            ]
-        );
+
     }
 
     /**
