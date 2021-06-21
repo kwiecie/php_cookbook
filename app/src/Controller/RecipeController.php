@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Security\LoginFormAuthenticator;
 
 /**
  * Class RecipeController.
@@ -40,11 +41,18 @@ class RecipeController extends AbstractController
      */
     public function index(Request $request, RecipeRepository $recipeRepository, PaginatorInterface $paginator): Response
     {
+
         $pagination = $paginator->paginate(
             $recipeRepository->queryAll(),
             $request->query->getInt('page', 1),
             RecipeRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+
+        /*$pagination = $paginator->paginate(
+            $recipeRepository->queryByAuthor($this->getUser()),
+            $request->query->getInt('page', 1),
+            RecipeRepository::PAGINATOR_ITEMS_PER_PAGE
+        );*/
 
         return $this->render(
             'recipe/index.html.twig',
@@ -90,10 +98,6 @@ class RecipeController extends AbstractController
      *     name="recipe_create",
      * )
      *
-     * * @IsGranted(
-     *     "CREATE",
-     *     subject="recipe",
-     * )
      */
     public function create(Request $request, RecipeRepository $recipeRepository): Response
     {

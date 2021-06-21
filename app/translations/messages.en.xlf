@@ -58,6 +58,10 @@
                 <source>label_description</source>
                 <target>Description</target>
             </trans-unit>
+            <trans-unit id="label_email">
+                <source>label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
             <trans-unit id="label_id">
                 <source>label_id</source>
                 <target>Id</target>
@@ -90,6 +94,10 @@
                 <source>message_category_contains_recipes</source>
                 <target>Category contains recipes!</target>
             </trans-unit>
+            <trans-unit id="message_created_successfully">
+                <source>message_created_successfully</source>
+                <target>Created successfully!</target>
+            </trans-unit>
             <trans-unit id="message_empty_list">
                 <source>message_empty_list</source>
                 <target>Empty list.</target>
@@ -116,7 +124,7 @@
             </trans-unit>
             <trans-unit id="title_category_details">
                 <source>title_category_details</source>
-                <target>Category details</target>
+                <target>Category details #%id%</target>
             </trans-unit>
             <trans-unit id="title_category_edit">
                 <source>title_category_edit</source>
@@ -129,6 +137,14 @@
             <trans-unit id="title_comment_create">
                 <source>title_comment_create</source>
                 <target>Create a comment</target>
+            </trans-unit>
+            <trans-unit id="title_comment_details">
+                <source>title_comment_details</source>
+                <target>Comment details #%id%</target>
+            </trans-unit>
+            <trans-unit id="title_comment_list">
+                <source>title_comment_list</source>
+                <target>Comments list</target>
             </trans-unit>
             <trans-unit id="title_recipe_create">
                 <source>title_recipe_create</source>

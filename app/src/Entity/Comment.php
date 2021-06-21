@@ -48,10 +48,16 @@ class Comment
     /**
      * Author.
      *
-     * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column (type="string", length=15)
      */
     private $author;
+
+    /**
+     * Email.
+     *
+     * @ORM\Column(type="string", length=64)
+     */
+    private $email;
 
     /**
      * Getter for id.
@@ -106,9 +112,9 @@ class Comment
     /**
      * Getter for Author.
      *
-     * @return User|null
+     * @return string|null
      */
-    public function getAuthor(): ?User
+    public function getAuthor(): ?string
     {
         return $this->author;
     }
@@ -116,10 +122,30 @@ class Comment
     /**
      * Setter for Author.
      *
-     * @param User|null $author
+     * @param string $author
      */
-    public function setAuthor(?User $author): void
+    public function setAuthor(string $author): void
     {
         $this->author = $author;
+    }
+
+    /**
+     * Getter for Email
+     *
+     * @return string|null
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Setter for email
+     *
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 }

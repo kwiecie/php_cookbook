@@ -93,6 +93,7 @@ class CategoryController extends AbstractController
      *     methods={"GET", "POST"},
      *     name="category_create",
      * )
+     *
      */
     public function create(Request $request, CategoryRepository $categoryRepository): Response
     {

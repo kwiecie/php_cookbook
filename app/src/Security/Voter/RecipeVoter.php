@@ -37,7 +37,7 @@ class RecipeVoter extends Voter
      */
     protected function supports($attribute, $subject)
     {
-        return in_array($attribute, ['CREATE', 'VIEW', 'EDIT', 'DELETE'])
+        return in_array($attribute, ['VIEW', 'EDIT', 'DELETE'])
             && $subject instanceof Recipe;
     }
 
@@ -61,7 +61,6 @@ class RecipeVoter extends Voter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case 'CREATE':
             case 'VIEW':
             case 'EDIT':
             case 'DELETE':

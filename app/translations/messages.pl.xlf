@@ -86,6 +86,10 @@
                 <source>label_updated_at</source>
                 <target>Edytowano</target>
             </trans-unit>
+            <trans-unit id="message_created_successfully">
+                <source>message_created_successfully</source>
+                <target>Utworzono poprawnie!</target>
+            </trans-unit>
             <trans-unit id="message_empty_list">
                 <source>message_empty_list</source>
                 <target>Pusta lista.</target>
