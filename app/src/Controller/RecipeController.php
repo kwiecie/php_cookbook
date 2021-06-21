@@ -96,6 +96,7 @@ class RecipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $recipe->setAuthor($this->getUser());
             $recipe->setCreatedAt(new \DateTime());
             $recipeRepository->save($recipe);
 

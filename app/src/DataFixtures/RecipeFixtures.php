@@ -28,6 +28,7 @@ class RecipeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
             $recipe->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             $recipe->setDescription($this->faker->sentence);
             $recipe->setCategory($this->getRandomReference('categories'));
+            $recipe->setAuthor($this->getRandomReference('admins'));
 
             return $recipe;
         });
@@ -43,6 +44,6 @@ class RecipeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
      */
     public function getDependencies(): array
     {
-        return [CategoryFixtures::class];
+        return [CategoryFixtures::class, UserFixtures::class];
     }
 }

@@ -80,7 +80,12 @@ class Recipe
     private $tags;
 
     /**
+     * Author.
+     *
+     * @var \App\Entity\User
+     *
      * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn (nullable=false)
      */
     private $author;
 
@@ -225,10 +230,8 @@ class Recipe
         return $this->author;
     }
 
-    public function setAuthor(?User $author): self
+    public function setAuthor(?User $author): void
     {
         $this->author = $author;
-
-        return $this;
     }
 }
