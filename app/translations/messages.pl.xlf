@@ -166,6 +166,10 @@
                 <source>title_tag_list</source>
                 <target>Lista tagów</target>
             </trans-unit>
+            <trans-unit id="title_welcome">
+                <source>title_welcome</source>
+                <target>Witaj!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

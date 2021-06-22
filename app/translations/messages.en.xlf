@@ -18,6 +18,10 @@
                 <source>action_edit</source>
                 <target>Edit</target>
             </trans-unit>
+            <trans-unit id="action_login">
+                <source>action_login</source>
+                <target>Log in</target>
+            </trans-unit>
             <trans-unit id="action_logout">
                 <source>action_logout</source>
                 <target>Log out</target>
@@ -189,6 +193,10 @@
             <trans-unit id="title_tag_list">
                 <source>title_tag_list</source>
                 <target>Tags list</target>
+            </trans-unit>
+            <trans-unit id="title_welcome">
+                <source>title_welcome</source>
+                <target>Welcome!</target>
             </trans-unit>
         </body>
     </file>

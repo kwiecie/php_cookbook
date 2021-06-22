@@ -74,6 +74,7 @@ class CommentController extends AbstractController
             ['comment' => $comment]
         );
     }
+
     /**
      * Create action.
      *
@@ -88,6 +89,7 @@ class CommentController extends AbstractController
      * @Route(
      *     "/comment",
      *     methods={"GET", "POST"},
+     *     requirements={"id": "[1-9]\d*"},
      *     name="comment_create",
      * )
      */
@@ -98,7 +100,8 @@ class CommentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$comment->setCreatedAt(new \DateTime());
+            //$comment->setRecipe();
+            $comment->setCreatedAt(new \DateTime());
             $commentRepository->save($comment);
 
             $this->addFlash('success', 'message_created_successfully');

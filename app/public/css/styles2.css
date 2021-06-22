@@ -196,3 +196,7 @@ footer {
     from {opacity: .4}
     to {opacity: 1}
 }
+
+#main_page_logo {
+    max-width: 500px;
+}

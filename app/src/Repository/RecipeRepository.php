@@ -6,6 +6,7 @@ namespace App\Repository;
 
 use App\Entity\Recipe;
 use App\Entity\User;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
@@ -72,12 +73,44 @@ class RecipeRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
+     * @param array $filters Filters array
+     *
      * @return \Doctrine\ORM\QueryBuilder Query Builder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(array $filters = []): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()->orderBy('recipe.createdAt', 'DESC');
+        $queryBuilder = $this->getOrCreateQueryBuilder()
+            ->select(
+                'partial recipe.{id, createdAt, title}',
+                'partial category.{id, title}'
+            )
+            ->join('recipe.category', 'category')
+            ->orderBy('recipe.createdAt', 'DESC');
+        $queryBuilder = $this->applyFiltersToList($queryBuilder, $filters);
+
+        return $queryBuilder;
+
+        //return $this->getOrCreateQueryBuilder()->orderBy('recipe.createdAt', 'DESC');
     }
+
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param \Doctrine\ORM\QueryBuilder $queryBuilder Query builder
+     * @param array                      $filters      Filters array
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['category']) && $filters['category'] instanceof Category) {
+            $queryBuilder->andWhere('category = :category')
+                ->setParameter('category', $filters['category']);
+        }
+
+        return $queryBuilder;
+    }
+
     /**
      * Get or create new query builder.
      *
@@ -94,13 +127,13 @@ class RecipeRepository extends ServiceEntityRepository
      * Query recipes by author.
      *
      * @param \App\Entity\User $user User entity
+     * @param array            $filters Filters array
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
-    public function queryByAuthor(User $user): QueryBuilder
+    public function queryByAuthor(User $user, array $filters = []): QueryBuilder
     {
-        $queryBuilder = $this->queryAll();
-
+        $queryBuilder = $this->queryAll($filters);
         $queryBuilder->andWhere('recipe.author = :author')
             ->setParameter('author', $user);
 

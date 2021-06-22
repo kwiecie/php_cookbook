@@ -33,4 +33,11 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    /**
+     * @Route ("/changepassword", name="change_password")
+     */
+    public function changePassword(){
+
+    }
 }

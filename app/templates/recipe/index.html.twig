@@ -29,7 +29,11 @@
                     <td>{{ recipe.id }}</td>
                     <td>{{ recipe.createdAt|format_date('long') }}</td>
                     <td>{{ recipe.title }}</td>
-                    <td>{{ recipe.category.title }}</td>
+                    <td>
+                        <a href="{{ url('recipe_index', {'filters.category_id' : recipe.category.id}) }}" title="{{ recipe.category.title }}">
+                            {{ recipe.category.title }}
+                        </a>
+                    </td>
                     <td>{{ recipe.author.email }}</td>
                     <td>
                         <a href="{{ url('recipe_show', {id: recipe.id}) }}" title="{{ 'action_view'|trans }}">
