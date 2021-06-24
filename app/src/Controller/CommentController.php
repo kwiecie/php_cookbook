@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Recipe;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -74,12 +75,13 @@ class CommentController extends AbstractController
             ['comment' => $comment]
         );
     }
-
+    /*
     /**
      * Create action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Repository\CommentRepository         $commentRepository Comment repository
+     * @param \App\Repository\CommentRepository         $commentRepository  Comment repository
+     * @param \App\Repository\RecipeRepository          $recipeRepository   Recipe repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -87,12 +89,12 @@ class CommentController extends AbstractController
      * @throws \Doctrine\ORM\OptimisticLockException
      *
      * @Route(
-     *     "/comment",
+     *     "/{id}/create",
      *     methods={"GET", "POST"},
      *     requirements={"id": "[1-9]\d*"},
      *     name="comment_create",
      * )
-     */
+     *//*
     public function create(Request $request, CommentRepository $commentRepository): Response
     {
         $comment = new Comment();
@@ -100,7 +102,8 @@ class CommentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$comment->setRecipe();
+            //$this->getRecipe();
+            //$comment->setRecipe($this->getRecipe());
             $comment->setCreatedAt(new \DateTime());
             $commentRepository->save($comment);
 
@@ -113,7 +116,7 @@ class CommentController extends AbstractController
             'comment/create.html.twig',
             ['form' => $form->createView()]
         );
-    }
+    }*/
 
 
     /**
@@ -138,6 +141,7 @@ class CommentController extends AbstractController
     public function delete(Request $request, Comment $comment, CommentRepository $commentRepository): Response
     {
             return $this->redirectToRoute('comment_index');
+        $this->addFlash('success', 'message_deleted_successfully');
         }
 
 }

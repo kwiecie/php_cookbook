@@ -26,9 +26,10 @@
                 {{ 'action_back_to_list'|trans }}
             </a>
         </button>
+
         <button>
-            <a href="{{ url('comment_create') }}" title="{{ 'comment'|trans }}">
-                {{ 'comment'|trans }}
+            <a href="{{ url('comment_create', {id: recipe.id}) }}" title="{{ 'comment_create'|trans }}">
+                {{ 'comment_create'|trans }}
             </a>
         </button>
     {% else %}

@@ -26,7 +26,6 @@ use App\Security\LoginFormAuthenticator;
  *
  * @Route("/recipe")
  *
- * @IsGranted("ROLE_ADMIN")
  */
 class RecipeController extends AbstractController
 {
@@ -69,12 +68,13 @@ class RecipeController extends AbstractController
      */
     public function index(Request $request): Response
     {
+
         $filters = [];
         $filters['category_id'] = $request->query->getInt('filters_category_id');
 
         $pagination = $this->recipeService->createPaginatedList(
             $request->query->getInt('page', 1),
-            $this->getUser(),
+            //$this->getUser(),
             $filters
         );
 
@@ -82,6 +82,8 @@ class RecipeController extends AbstractController
             'recipe/index.html.twig',
             ['pagination' => $pagination]
         );
+
+
     }
 
     /**
@@ -231,12 +233,13 @@ class RecipeController extends AbstractController
                 'recipe' => $recipe,
             ]
         );
-    }/*
+    }
     /**
      * Create comment action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
      * @param \App\Repository\CommentRepository         $commentRepository Comment repository
+     * @param \App\Entity\Recipe                        $recipe       Recipe entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -249,26 +252,26 @@ class RecipeController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      *     name="comment_create",
      * )
-     *//*
-    public function createComment(Request $request, CommentRepository $commentRepository): Response
+     */
+    public function createComment(Request $request, CommentRepository $commentRepository, Recipe $recipe): Response
     {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$comment->setRecipe();
+            $comment->setRecipe($this->getId());
             $comment->setCreatedAt(new \DateTime());
             $commentRepository->save($comment);
 
             $this->addFlash('success', 'message_created_successfully');
 
-            return $this->redirectToRoute('comment_index');
+            return $this->redirectToRoute('recipe_show');
         }
 
         return $this->render(
-            'comment/create.html.twig',
+            'recipe/comment_create.html.twig',
             ['form' => $form->createView()]
         );
-    }*/
+    }
 }

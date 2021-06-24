@@ -78,18 +78,19 @@ class RecipeService
     /**
      * Create paginated list.
      *
-     * @param int                                        $page    Page number
-     * @param \Symfony\Component\Security\Core\User\User $user    User entity
-     * @param array                                      $filters Filters array
+     * @param int $page Page number
      *
-     * @return \Knp\Component\Pager\Pagination\PaginationInterface Paginated list
+     * @param array $filters Filters array
+     *
+     * @return PaginationInterface Paginated list
      */
-    public function createPaginatedList(int $page, UserInterface $user, array $filters = []): PaginationInterface
+
+    public function createPaginatedList(int $page, array $filters = []): PaginationInterface
     {
         $filters = $this->prepareFilters($filters);
 
         return $this->paginator->paginate(
-            $this->recipeRepository->queryByAuthor($user, $filters),
+            $this->recipeRepository->queryByFilter($filters),
             $page,
             RecipeRepository::PAGINATOR_ITEMS_PER_PAGE
         );

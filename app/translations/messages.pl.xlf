@@ -18,6 +18,10 @@
                 <source>action_edit</source>
                 <target>Edytuj</target>
             </trans-unit>
+            <trans-unit id="action_go_to_recipe_list">
+                <source>action_go_to_recipe_list</source>
+                <target>Pokaż listę przepisów</target>
+            </trans-unit>
             <trans-unit id="action_save">
                 <source>action_save</source>
                 <target>Zapisz</target>
@@ -65,6 +69,10 @@
             <trans-unit id="label_log_in">
                 <source>label_log_in</source>
                 <target>Zaloguj się</target>
+            </trans-unit>
+            <trans-unit id="label_none">
+                <source>label_none</source>
+                <target>Brak</target>
             </trans-unit>
             <trans-unit id="label_recipes">
                 <source>label_recipes</source>

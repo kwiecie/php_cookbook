@@ -140,6 +140,20 @@ class RecipeRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
+    /**
+     * Query recipes only by filters.
+     *
+     * @param array $filters
+     *
+     * @return QueryBuilder
+     */
+    public function queryByFilter(array $filters = []): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll($filters);
+
+        return $queryBuilder;
+    }
+
     // /**
     //  * @return Recipe[] Returns an array of Recipe objects
     //  */

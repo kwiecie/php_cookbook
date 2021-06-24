@@ -5,7 +5,10 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Comment;
+use App\Entity\Recipe;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,6 +34,20 @@ class CommentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $builder->add(
+            'recipe',
+            EntityType::class,
+            [
+                'class' => Recipe::class,
+                'choice_label' => function ($recipe) {
+                    return $recipe->getTitle();
+                },
+                'label' => 'label_recipe',
+                'placeholder' => 'label_none',
+                'required' => true,
+            ]
+        );
+
         $builder->add(
             'author',
             TextType::class,
