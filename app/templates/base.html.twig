@@ -5,7 +5,7 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/styles2.css">
+        <link rel="stylesheet" href="{{ asset('css/styles2.css') }}">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,13 +19,13 @@
     <h1 id="site_title"><a href="{{ absolute_url(' ') }}">cookbook.</a></h1>
         <nav class="nav_menu">
         <ul>
-            <li><a href="/recipe">{{ 'label_recipes'|trans }}</a></li>
+            <li><a href="{{ url('recipe_index') }}">{{ 'label_recipes'|trans }}</a></li>
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                <li><a href="/category">{{ 'label_categories'|trans }}</a></li>
-                <li><a href="/comment">{{ 'label_comments' |trans }}</a></li>
+                <li><a href="{{ url('category_index') }}">{{ 'label_categories'|trans }}</a></li>
+                <li><a href="{{ url('comment_index') }}">{{ 'label_comments' |trans }}</a></li>
             {% endif %}
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                <li>{{ app.user.email }}</li>
+                <li><a href="{{ url('user_edit', {'id': app.user.id}) }}"> {{ app.user.email }}</a></li>
                 <li><a href="{{ url('app_logout') }}">{{ 'action_logout'|trans }}</a></li>
             {% else %}
                 <li><a href="{{ url('app_login') }}">{{ 'action_login'|trans }}</a></li>

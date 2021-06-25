@@ -6,7 +6,9 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\User;
 use App\Form\CategoryType;
+use App\Repository\CategoryRepository;
 use App\Service\CategoryService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,6 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/category")
  *
  * @IsGranted("ROLE_ADMIN")
+ * @method setAuthor(object|\Symfony\Component\Security\Core\User\UserInterface|null $getUser)
  */
 class CategoryController extends AbstractController
 {
@@ -91,12 +94,10 @@ class CategoryController extends AbstractController
      * Create action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
-     *
      * @Route(
      *     "/create",
      *     methods={"GET", "POST"},
@@ -110,7 +111,7 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getUser();
+            $category->setAuthor($this->getUser());
             $this->categoryService->save($category);
             $this->addFlash('success', 'message_created_successfully');
 
@@ -122,6 +123,7 @@ class CategoryController extends AbstractController
             ['form' => $form->createView()]
         );
     }
+
 
     /**
      * Edit action.

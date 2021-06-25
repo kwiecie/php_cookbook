@@ -30,6 +30,10 @@
                 <source>action_view</source>
                 <target>Wyświetl</target>
             </trans-unit>
+            <trans-unit id="comment_create">
+                <source>comment_create</source>
+                <target>Skomentuj</target>
+            </trans-unit>
             <trans-unit id="label_actions">
                 <source>label_actions</source>
                 <target>Akcje</target>
@@ -97,6 +101,10 @@
             <trans-unit id="message_created_successfully">
                 <source>message_created_successfully</source>
                 <target>Utworzono poprawnie!</target>
+            </trans-unit>
+            <trans-unit id="message_deleted_successfully">
+                <source>message_deleted_successfully</source>
+                <target>Pomyślnie usunięto!</target>
             </trans-unit>
             <trans-unit id="message_empty_list">
                 <source>message_empty_list</source>

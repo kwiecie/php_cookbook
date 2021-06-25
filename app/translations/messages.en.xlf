@@ -38,6 +38,10 @@
                 <source>action_view</source>
                 <target>View</target>
             </trans-unit>
+            <trans-unit id="comment_create">
+                <source>comment_create</source>
+                <target>Create a comment</target>
+            </trans-unit>
             <trans-unit id="label_actions">
                 <source>label_actions</source>
                 <target>Actions</target>
@@ -82,6 +86,14 @@
                 <source>label_log_in</source>
                 <target>Log in</target>
             </trans-unit>
+            <trans-unit id="label_new_password">
+                <source>label_new_password</source>
+                <target>New password</target>
+            </trans-unit>
+            <trans-unit id="label_repeat_password">
+                <source>label_repeat_password</source>
+                <target>Repeat password</target>
+            </trans-unit>
             <trans-unit id="label_none">
                 <source>label_none</source>
                 <target>None</target>
@@ -113,6 +125,10 @@
             <trans-unit id="message_created_successfully">
                 <source>message_created_successfully</source>
                 <target>Created successfully!</target>
+            </trans-unit>
+            <trans-unit id="message_deleted_successfully">
+                <source>message_deleted_successfully</source>
+                <target>Deleted successfully!</target>
             </trans-unit>
             <trans-unit id="message_empty_list">
                 <source>message_empty_list</source>
@@ -161,6 +177,10 @@
             <trans-unit id="title_comment_list">
                 <source>title_comment_list</source>
                 <target>Comments list</target>
+            </trans-unit>
+            <trans-unit id="title_profile_edit">
+                <source>title_profile_edit</source>
+                <target>Change password</target>
             </trans-unit>
             <trans-unit id="title_recipe_create">
                 <source>title_recipe_create</source>

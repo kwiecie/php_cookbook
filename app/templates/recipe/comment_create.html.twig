@@ -1,22 +1,12 @@
 {% extends 'base.html.twig' %}
 
-
-
 {% block title %}
     {{ 'title_comment_create'|trans }}
 {% endblock %}
 
 {% block body %}
-    {% include 'default/_form.html.twig' with {
-        attr: {
-            method: 'PUT',
-            action: url('comment_create', {'id': recipe.id}),
-        },
-        form: form,
-        back_to_list_path: 'recipe_index',
-    } %}
     <h1>{{ 'title_comment_create'|trans }}</h1>
-    {{ form_start(form, { method: 'POST', action: url('comment_create') }) }}
+    {{ form_start(form, { method: 'POST', action: url('comment_create', {'id': app.recipe.id}) }) }}
     {{ form_widget(form) }}
 
     <div class="form-group row float-sm-right">

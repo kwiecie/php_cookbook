@@ -249,10 +249,11 @@ class RecipeController extends AbstractController
      * @Route(
      *     "/{id}/comment",
      *     methods={"GET", "POST"},
-     *     requirements={"id": "[1-9]\d*"},
+     *
      *     name="comment_create",
      * )
      */
+    //requirements={"id": "[1-9]\d*"},
     public function createComment(Request $request, CommentRepository $commentRepository, Recipe $recipe): Response
     {
         $comment = new Comment();
@@ -260,7 +261,7 @@ class RecipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setRecipe($this->getId());
+            $comment->setRecipe($this->getRecipe());
             $comment->setCreatedAt(new \DateTime());
             $commentRepository->save($comment);
 
@@ -271,7 +272,10 @@ class RecipeController extends AbstractController
 
         return $this->render(
             'recipe/comment_create.html.twig',
-            ['form' => $form->createView()]
+            [
+                'form' => $form->createView(),
+                'recipe' =>$recipe,
+            ]
         );
     }
 }
