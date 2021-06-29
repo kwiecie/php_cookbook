@@ -74,7 +74,6 @@ class RecipeController extends AbstractController
 
         $pagination = $this->recipeService->createPaginatedList(
             $request->query->getInt('page', 1),
-            //$this->getUser(),
             $filters
         );
 
@@ -132,6 +131,7 @@ class RecipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $recipe->setAuthor($this->getUser());
             $this->recipeService->save($recipe);
             $this->addFlash('success', 'message_created_successfully');
 
@@ -238,8 +238,8 @@ class RecipeController extends AbstractController
      * Create comment action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Repository\CommentRepository         $commentRepository Comment repository
-     * @param \App\Entity\Recipe                        $recipe       Recipe entity
+     * @param \App\Repository\CommentRepository         $commentRepository  Comment repository
+     * @param \App\Entity\Recipe                        $recipe             Recipe entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -261,13 +261,11 @@ class RecipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setRecipe($this->getRecipe());
-            $comment->setCreatedAt(new \DateTime());
             $commentRepository->save($comment);
 
             $this->addFlash('success', 'message_created_successfully');
 
-            return $this->redirectToRoute('recipe_show');
+            return $this->redirectToRoute('recipe_index');
         }
 
         return $this->render(

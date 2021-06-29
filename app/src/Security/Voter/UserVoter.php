@@ -72,10 +72,8 @@ class UserVoter extends Voter
             case 'DELETE':
                 return $this->isAuthor($subject, $user);
 
-                break;
-            default:
+                default:
                 return false;
-                break;
         }
     }
     /**

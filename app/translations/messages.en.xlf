@@ -98,6 +98,10 @@
                 <source>label_none</source>
                 <target>None</target>
             </trans-unit>
+            <trans-unit id="label_recipe">
+                <source>label_recipe</source>
+                <target>Recipe</target>
+            </trans-unit>
             <trans-unit id="label_recipes">
                 <source>label_recipes</source>
                 <target>Recipes</target>
@@ -142,6 +146,10 @@
                 <source>message_item_not_found</source>
                 <target>Item not found!</target>
             </trans-unit>
+            <trans-unit id="message_password_changed">
+                <source>message_password_changed</source>
+                <target>Password changed!</target>
+            </trans-unit>
             <trans-unit id="message_updated_successfully">
                 <source>message_updated_successfully</source>
                 <target>Updated successfully!</target>
@@ -169,6 +177,10 @@
             <trans-unit id="title_comment_create">
                 <source>title_comment_create</source>
                 <target>Create a comment</target>
+            </trans-unit>
+            <trans-unit id="title_comment_delete">
+                <source>title_comment_delete</source>
+                <target>Delete comment #%id%</target>
             </trans-unit>
             <trans-unit id="title_comment_details">
                 <source>title_comment_details</source>

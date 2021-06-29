@@ -76,7 +76,6 @@ class CategoryVoter extends Voter
                 break;
             default:
                 return false;
-                break;
         }
 
         return false;

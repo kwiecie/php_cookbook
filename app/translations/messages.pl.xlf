@@ -22,6 +22,14 @@
                 <source>action_go_to_recipe_list</source>
                 <target>Pokaż listę przepisów</target>
             </trans-unit>
+            <trans-unit id="action_login">
+                <source>action_login</source>
+                <target>Zaloguj się</target>
+            </trans-unit>
+            <trans-unit id="action_logout">
+            <source>action_logout</source>
+            <target>Wyloguj się</target>
+            </trans-unit>
             <trans-unit id="action_save">
                 <source>action_save</source>
                 <target>Zapisz</target>
@@ -66,6 +74,10 @@
                 <source>label_description</source>
                 <target>Opis</target>
             </trans-unit>
+            <trans-unit id="label_email">
+                <source>label_email</source>
+                <target>E-mail</target>
+            </trans-unit>
             <trans-unit id="label_id">
                 <source>label_id</source>
                 <target>Id</target>
@@ -74,9 +86,21 @@
                 <source>label_log_in</source>
                 <target>Zaloguj się</target>
             </trans-unit>
+            <trans-unit id="label_new_password">
+                <source>label_new_password</source>
+                <target>Nowe hasło</target>
+            </trans-unit>
+            <trans-unit id="label_repeat_password">
+                <source>label_repeat_password</source>
+                <target>Powtórz hasło</target>
+            </trans-unit>
             <trans-unit id="label_none">
                 <source>label_none</source>
                 <target>Brak</target>
+            </trans-unit>
+            <trans-unit id="label_recipe">
+                <source>label_recipe</source>
+                <target>Przepis</target>
             </trans-unit>
             <trans-unit id="label_recipes">
                 <source>label_recipes</source>
@@ -98,6 +122,10 @@
                 <source>label_updated_at</source>
                 <target>Edytowano</target>
             </trans-unit>
+            <trans-unit id="message_category_contains_recipes">
+                <source>message_category_contains_recipes</source>
+                <target>Kategoria zawiera przepisy!</target>
+            </trans-unit>
             <trans-unit id="message_created_successfully">
                 <source>message_created_successfully</source>
                 <target>Utworzono poprawnie!</target>
@@ -118,6 +146,10 @@
                 <source>message_item_not_found</source>
                 <target>Nie znaleziono obiektu!</target>
             </trans-unit>
+            <trans-unit id="message_password_changed">
+                <source>message_password_changed</source>
+                <target>Hasło zostało zmienione!</target>
+            </trans-unit>
             <trans-unit id="message_updated_successfully">
                 <source>message_updated_successfully</source>
                 <target>Pomyślnie zaktualizowano!</target>
@@ -125,6 +157,10 @@
             <trans-unit id="title_category_create">
                 <source>title_category_create</source>
                 <target>Utwórz kategorię</target>
+            </trans-unit>
+            <trans-unit id="title_category_delete">
+                <source>title_category_delete</source>
+                <target>Usuń kategorię #%id%</target>
             </trans-unit>
             <trans-unit id="title_category_details">
                 <source>title_category_details</source>
@@ -141,6 +177,22 @@
             <trans-unit id="title_comment_create">
                 <source>title_comment_create</source>
                 <target>Utwórz komentarz</target>
+            </trans-unit>
+            <trans-unit id="title_comment_delete">
+                <source>title_comment_delete</source>
+                <target>Usuń komentarz #%id%</target>
+            </trans-unit>
+            <trans-unit id="title_comment_details">
+                <source>title_comment_details</source>
+                <target>Szczegóły komentarza #%id%</target>
+            </trans-unit>
+            <trans-unit id="title_comment_list">
+                <source>title_comment_list</source>
+                <target>Lista komentarzy</target>
+            </trans-unit>
+            <trans-unit id="title_profile_edit">
+                <source>title_profile_edit</source>
+                <target>Zmień hasło</target>
             </trans-unit>
             <trans-unit id="title_recipe_create">
                 <source>title_recipe_create</source>

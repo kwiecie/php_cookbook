@@ -63,7 +63,7 @@ class CategoryService
     /**
      * Save category.
      *
-     * @param \App\Entity\Category $category Category entity
+     * @param Category $category Category entity
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -76,7 +76,7 @@ class CategoryService
     /**
      * Delete category.
      *
-     * @param \App\Entity\Category $category Category entity
+     * @param Category $category Category entity
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -91,7 +91,7 @@ class CategoryService
      *
      * @param int $id Category Id
      *
-     * @return \App\Entity\Category|null Category entity
+     * @return Category|null Category entity
      */
     public function findOneById(int $id): ?Category
     {

@@ -130,7 +130,7 @@ class Recipe
     /**
      * Getter for Created at.
      *
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -140,7 +140,7 @@ class Recipe
     /**
      * Setter for Created at.
      *
-     * @param \DateTimeInterface $createdAt
+     * @param DateTimeInterface $createdAt
      */
     public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
@@ -225,11 +225,20 @@ class Recipe
         }
     }
 
+    /**
+     * Getter for Author.
+     *
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for Author.
+     * @param User|null $author
+     */
     public function setAuthor(?User $author): void
     {
         $this->author = $author;

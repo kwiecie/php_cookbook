@@ -72,18 +72,15 @@ class RecipeType extends AbstractType
             ]
         );
         $builder->add(
-            'tags',
+            'description',
             TextType::class,
             [
-                'label' => 'label_tags',
-                'required' => false,
-                'attr' => ['max_length' => 128],
+                'label' => 'label_description',
+                'required' => true,
+                'attr' => ['max_length' => 255],
             ]
         );
 
-        $builder->get('tags')->addModelTransformer(
-            $this->tagsDataTransformer
-        );
     }
 
     /**

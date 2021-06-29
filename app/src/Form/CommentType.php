@@ -47,7 +47,6 @@ class CommentType extends AbstractType
                 'required' => true,
             ]
         );
-
         $builder->add(
             'author',
             TextType::class,

@@ -8,6 +8,8 @@ namespace App\Service;
 use App\Entity\Recipe;
 
 use App\Repository\RecipeRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -22,29 +24,36 @@ class RecipeService
     /**
      * Recipe repository
      *
-     * @var \App\Repository\RecipeRepository
+     * @var RecipeRepository
      */
     private $recipeRepository;
 
     /**
      * Paginator
      *
-     * @var \Knp\Component\Pager\PaginatorInterface
+     * @var PaginatorInterface
      */
     private $paginator;
 
     /**
      * Category service.
      *
-     * @var \App\Service\CategoryService
+     * @var CategoryService
      */
     private $categoryService;
 
     /**
+     * Comment service.
+     *
+     * @var CommentService
+     */
+    private $commentService;
+
+    /**
      * RecipeService constructor
      *
-     * @param \App\Repository\RecipeRepository $recipeRepository Recipe repository
-     * @param \Knp\Component\Pager\PaginatorInterface $paginator Paginator
+     * @param RecipeRepository $recipeRepository Recipe repository
+     * @param PaginatorInterface $paginator Paginator
      * @param $categoryService
      */
     public function __construct(RecipeRepository $recipeRepository, PaginatorInterface $paginator, CategoryService $categoryService)
@@ -99,10 +108,10 @@ class RecipeService
     /**
      * Save recipe.
      *
-     * @param \App\Entity\Recipe $recipe Recipe entity
+     * @param Recipe $recipe Recipe entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function save(Recipe $recipe): void
     {
@@ -112,10 +121,10 @@ class RecipeService
     /**
      * Delete recipe.
      *
-     * @param \App\Entity\Recipe $recipe Recipe entity
+     * @param Recipe $recipe Recipe entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function delete(Recipe $recipe): void
     {
@@ -127,7 +136,7 @@ class RecipeService
      *
      * @param int $id Recipe Id
      *
-     * @return \App\Entity\Recipe|null Recipe entity
+     * @return Recipe|null Recipe entity
      */
     public function findOneById(int $id): ?Recipe
     {

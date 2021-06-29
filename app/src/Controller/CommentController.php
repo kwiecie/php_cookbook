@@ -90,56 +90,13 @@ class CommentController extends AbstractController
             ['comment' => $comment]
         );
     }
-    /*
-    /**
-     * Create action.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Repository\CommentRepository         $commentRepository  Comment repository
-     * @param \App\Repository\RecipeRepository          $recipeRepository   Recipe repository
-     *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     *
-     * @Route(
-     *     "/{id}/create",
-     *     methods={"GET", "POST"},
-     *     requirements={"id": "[1-9]\d*"},
-     *     name="comment_create",
-     * )
-     *//*
-    public function create(Request $request, CommentRepository $commentRepository): Response
-    {
-        $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            //$this->getRecipe();
-            //$comment->setRecipe($this->getRecipe());
-            $comment->setCreatedAt(new \DateTime());
-            $commentRepository->save($comment);
-
-            $this->addFlash('success', 'message_created_successfully');
-
-            return $this->redirectToRoute('comment_index');
-        }
-
-        return $this->render(
-            'comment/create.html.twig',
-            ['form' => $form->createView()]
-        );
-    }*/
-
 
     /**
      * Delete action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
      * @param \App\Entity\Comment                       $comment            Comment entity
-     * @param \App\Repository\CommentRepository        $commentRepository Comment repository
+     * @param \App\Repository\CommentRepository         $commentRepository Comment repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
