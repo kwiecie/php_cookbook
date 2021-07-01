@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class RecipeIngredients
 {
     /**
+     * Id.
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -18,41 +20,66 @@ class RecipeIngredients
     private $id;
 
     /**
+     * Amount.
+     *
      * @ORM\Column(type="integer")
      */
     private $amount;
 
     /**
+     * Unit.
+     *
      * @ORM\Column(type="string", length=15)
      */
     private $unit;
 
+    /**
+     * Getter for id.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for amount.
+     *
+     * @return int|null
+     */
     public function getAmount(): ?int
     {
         return $this->amount;
     }
 
-    public function setAmount(int $amount): self
+    /**
+     * Setter for amount.
+     *
+     * @param int $amount
+     */
+    public function setAmount(int $amount): void
     {
         $this->amount = $amount;
-
-        return $this;
     }
 
+    /**
+     * Getter for unit.
+     *
+     * @return string|null
+     */
     public function getUnit(): ?string
     {
         return $this->unit;
     }
 
-    public function setUnit(string $unit): self
+    /**
+     * Setter for unit.
+     *
+     * @param string $unit
+     */
+    public function setUnit(string $unit): void
     {
         $this->unit = $unit;
-
-        return $this;
     }
 }

@@ -86,7 +86,6 @@ class RecipeRepository extends ServiceEntityRepository
             ->orderBy('recipe.createdAt', 'DESC');
         $queryBuilder = $this->applyFiltersToList($queryBuilder, $filters);
         return $queryBuilder;
-//return $this->getOrCreateQueryBuilder()->orderBy('recipe.createdAt', 'DESC');
     }
 
     /**

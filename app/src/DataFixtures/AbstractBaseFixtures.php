@@ -81,7 +81,6 @@ abstract class AbstractBaseFixtures extends Fixture
             }
 
             $this->manager->persist($entity);
-// store for usage later as groupName_#COUNT#
             $this->addReference(sprintf('%s_%d', $groupName, $i), $entity);
         }
     }
