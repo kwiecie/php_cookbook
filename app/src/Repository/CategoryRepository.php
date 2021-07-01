@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category repository.
  */
@@ -30,8 +31,7 @@ class CategoryRepository extends ServiceEntityRepository
      * @constant int
      */
     const PAGINATOR_ITEMS_PER_PAGE = 5;
-
-    /**
+/**
      * CategoryRepository constructor.
      * @param ManagerRegistry $registry
      */

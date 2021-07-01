@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Comment type.
  */
@@ -34,45 +35,29 @@ class CommentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(
-            'recipe',
-            EntityType::class,
-            [
+        $builder->add('recipe', EntityType::class, [
                 'class' => Recipe::class,
                 'choice_label' => function ($recipe) {
+
                     return $recipe->getTitle();
                 },
                 'label' => 'label_recipe',
                 'placeholder' => 'label_none',
                 'required' => true,
-            ]
-        );
-        $builder->add(
-            'author',
-            TextType::class,
-            [
-                'label'=> 'label_author',
+            ]);
+        $builder->add('author', TextType::class, [
+                'label' => 'label_author',
                 'required' => true,
-            ]
-        );
-        $builder->add(
-            'email',
-            TextType::class,
-            [
-                'label'=> 'label_email',
+            ]);
+        $builder->add('email', TextType::class, [
+                'label' => 'label_email',
                 'required' => true,
-            ]
-        );
-        $builder->add(
-            'content',
-            TextType::class,
-            [
+            ]);
+        $builder->add('content', TextType::class, [
                 'label' => 'label_content',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]
-        );
-
+            ]);
     }
 
     /**

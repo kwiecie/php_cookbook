@@ -18,5 +18,4 @@ class IngredientsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Ingredients::class);
     }
-
 }

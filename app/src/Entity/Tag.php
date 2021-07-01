@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tag entity.
  */
@@ -34,8 +35,7 @@ class Tag
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
+/**
      * Created at.
      *
      * @var \DateTimeInterface
@@ -47,8 +47,7 @@ class Tag
      * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
-
-    /**
+/**
      * Updated at.
      *
      * @var \DateTimeInterface
@@ -60,8 +59,7 @@ class Tag
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
-
-    /**
+/**
      * Code.
      *
      * @ORM\Column(type="string", length=64)
@@ -72,8 +70,7 @@ class Tag
      * @Gedmo\Slug(fields={"title"})
      */
     private $code;
-
-    /**
+/**
      * Title.
      *
      * @var string
@@ -85,15 +82,13 @@ class Tag
      * @Assert\Length(min="3", max="64")
      */
     private $title;
-
-    /**
+/**
      * Recipes.
      * @var Doctrine\Common\Collections\ArrayCollection\App\Entity\Tag[] Tag
      * @ORM\ManyToMany(targetEntity=Recipe::class, mappedBy="tags")
      */
     private $recipes;
-
-    /**
+/**
      * Tag constructor.
      */
     public function __construct()
@@ -129,7 +124,6 @@ class Tag
     public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
-
     }
 
     /**
@@ -150,7 +144,6 @@ class Tag
     public function setUpdatedAt(DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
-
     }
 
     /**
@@ -171,7 +164,6 @@ class Tag
     public function setCode(string $code): void
     {
         $this->code = $code;
-
     }
 
     /**
@@ -192,7 +184,6 @@ class Tag
     public function setTitle(string $title): void
     {
         $this->title = $title;
-
     }
 
     /**

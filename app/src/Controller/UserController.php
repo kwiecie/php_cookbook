@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User controller.
  */
@@ -45,19 +46,16 @@ class UserController extends AbstractController
      * )
      *
      */
-    public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder): Response
-    {
+    public function edit(
+        Request $request,
+        User $user,
+        UserRepository $userRepository,
+        UserPasswordEncoderInterface $passwordEncoder
+    ): Response {
         $form = $this->createForm(ChangePasswordType::class, $user, ['method' => 'PUT']);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
-
+            $user->setPassword($passwordEncoder->encodePassword($user, $form->get('password')->getData()));
             $userRepository->save($user);
             $this->addFlash('success', 'message_password_changed');
             $this->redirectToRoute('recipe_index');
@@ -68,5 +66,4 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-
 }

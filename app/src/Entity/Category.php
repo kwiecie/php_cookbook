@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category entity.
  */
@@ -33,8 +34,7 @@ class Category
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
+/**
      * Created at.
      *
      * @var DateTimeInterface
@@ -46,8 +46,7 @@ class Category
      * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
-
-    /**
+/**
      * Updated at.
      *
      * @var DateTimeInterface
@@ -59,8 +58,7 @@ class Category
      * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
-
-    /**
+/**
      * Title.
      *
      * @var string
@@ -78,8 +76,7 @@ class Category
      *     )
      */
     private $title;
-
-    /**
+/**
      * Code.
      *
      * @var string
@@ -98,8 +95,7 @@ class Category
      * @Gedmo\Slug(fields={"title"})
      */
     private $code;
-
-    /**
+/**
      * Recipes.
      *
      * @var  \Doctrine\Common\Collections\ArrayCollection|\App\Entity\Recipe[]
@@ -107,8 +103,7 @@ class Category
      * @ORM\OneToMany(targetEntity=Recipe::class, mappedBy="category")
      */
     private $recipes;
-
-    /**
+/**
      * Author.
      *
      * @var \App\Entity\User
@@ -117,8 +112,7 @@ class Category
      * @ORM\JoinColumn (nullable=false)
      */
     private $author;
-
-    /**
+/**
      * Category constructor.
      */
     public function __construct()
@@ -154,7 +148,6 @@ class Category
     public function setCreatedAt(DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
-
     }
     /**
      * Getter for Updated at.
@@ -236,7 +229,7 @@ class Category
     public function removeRecipe(Recipe $recipe): self
     {
         if ($this->recipes->removeElement($recipe)) {
-            // set the owning side to null (unless already changed)
+// set the owning side to null (unless already changed)
             if ($recipe->getCategory() === $this) {
                 $recipe->setCategory(null);
             }
@@ -263,6 +256,5 @@ class Category
     public function setAuthor(?User $author): void
     {
         $this->author = $author;
-
     }
 }

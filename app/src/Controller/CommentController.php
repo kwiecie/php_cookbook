@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Comment Controller.
  */
@@ -17,7 +18,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * Class CommentController
  *
@@ -34,8 +34,7 @@ class CommentController extends AbstractController
      * @var \App\Service\CommentService
      */
     private $commentService;
-
-    /**
+/**
      * CommentController constructor.
      *
      * @param \App\Service\CommentService       $commentService Comment service
@@ -61,11 +60,7 @@ class CommentController extends AbstractController
     {
         $page = $request->query->getInt('page', 1);
         $pagination = $this->commentService->createPaginatedList($page);
-
-        return $this->render(
-            'comment/index.html.twig',
-            ['pagination' => $pagination]
-        );
+        return $this->render('comment/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**
@@ -85,10 +80,7 @@ class CommentController extends AbstractController
      */
     public function show(Comment $comment): Response
     {
-        return $this->render(
-            'comment/show.html.twig',
-            ['comment' => $comment]
-        );
+        return $this->render('comment/show.html.twig', ['comment' => $comment]);
     }
 
     /**
@@ -114,7 +106,6 @@ class CommentController extends AbstractController
     {
         $form = $this->createForm(CommentType::class, $comment, ['method' => 'DELETE']);
         $form->handleRequest($request);
-
         if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
             $form->submit($request->request->get($form->getName()));
         }
@@ -122,18 +113,12 @@ class CommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->commentService->delete($comment);
             $this->addFlash('success', 'message_deleted_successfully');
-
             return $this->redirectToRoute('comment_index');
         }
 
-        return $this->render(
-            'comment/delete.html.twig',
-            [
+        return $this->render('comment/delete.html.twig', [
                 'form' => $form->createView(),
                 'comment' => $comment,
-            ]
-        );
-
-        }
-
+            ]);
+    }
 }

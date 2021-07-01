@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User fixtures.
  */
@@ -20,8 +21,7 @@ class UserFixtures extends AbstractBaseFixtures
      * @var \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface
      */
     private $passwordEncoder;
-
-    /**
+/**
      * UserFixtures constructor.
      *
      * @param \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface $passwordEncoder Password encoder
@@ -53,19 +53,13 @@ class UserFixtures extends AbstractBaseFixtures
         });*/
 
         $this->createMany(3, 'admins', function ($i) {
+
             $user = new User();
             $user->setEmail(sprintf('admin%d@example.com', $i));
             $user->setRoles([User::ROLE_USER, User::ROLE_ADMIN]);
-            $user->setPassword(
-                $this->passwordEncoder->encodePassword(
-                    $user,
-                    'admin1234'
-                )
-            );
-
+            $user->setPassword($this->passwordEncoder->encodePassword($user, 'admin1234'));
             return $user;
         });
-
         $manager->flush();
     }
 }

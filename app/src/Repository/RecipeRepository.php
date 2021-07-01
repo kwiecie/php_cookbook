@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Recipe repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Recipe;
@@ -31,8 +33,7 @@ class RecipeRepository extends ServiceEntityRepository
      * @constant int
      */
     const PAGINATOR_ITEMS_PER_PAGE = 10;
-
-    /**
+/**
      * RecipeRepository constructor.
      *
      * @param ManagerRegistry $registry
@@ -80,17 +81,12 @@ class RecipeRepository extends ServiceEntityRepository
     public function queryAll(array $filters = []): QueryBuilder
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
-            ->select(
-                'partial recipe.{id, createdAt, title}',
-                'partial category.{id, title}'
-            )
+            ->select('partial recipe.{id, createdAt, title}', 'partial category.{id, title}')
             ->join('recipe.category', 'category')
             ->orderBy('recipe.createdAt', 'DESC');
         $queryBuilder = $this->applyFiltersToList($queryBuilder, $filters);
-
         return $queryBuilder;
-
-        //return $this->getOrCreateQueryBuilder()->orderBy('recipe.createdAt', 'DESC');
+//return $this->getOrCreateQueryBuilder()->orderBy('recipe.createdAt', 'DESC');
     }
 
     /**
@@ -136,7 +132,6 @@ class RecipeRepository extends ServiceEntityRepository
         $queryBuilder = $this->queryAll($filters);
         $queryBuilder->andWhere('recipe.author = :author')
             ->setParameter('author', $user);
-
         return $queryBuilder;
     }
 
@@ -150,8 +145,6 @@ class RecipeRepository extends ServiceEntityRepository
     public function queryByFilter(array $filters = []): QueryBuilder
     {
         $queryBuilder = $this->queryAll($filters);
-
         return $queryBuilder;
     }
-
 }

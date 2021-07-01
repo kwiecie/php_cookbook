@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tag fixture.
  */
@@ -21,14 +22,13 @@ class TagFixtures extends AbstractBaseFixtures
     public function loadData(ObjectManager $manager): void
     {
         $this->createMany(10, 'tag', function ($i) {
+
             $tag = new tag();
             $tag->setTitle($this->faker->word);
             $tag->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             $tag->setUpdatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
-
             return $tag;
         });
-
         $manager->flush();
     }
 }

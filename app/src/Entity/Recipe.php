@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Recipe entity.
  */
+
 namespace App\Entity;
 
 use DateTimeInterface;
@@ -27,8 +29,7 @@ class Recipe
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
+/**
      * Title.
      *
      * @var string
@@ -36,8 +37,7 @@ class Recipe
      * @ORM\Column(type="string", length=255)
      */
     private $title;
-
-    /**
+/**
      * Created at.
      *
      * @var \DateTimeInterface
@@ -47,8 +47,7 @@ class Recipe
      * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
-
-    /**
+/**
      * Description.
      *
      * @var string
@@ -56,8 +55,7 @@ class Recipe
      * @ORM\Column(type="string", length=255)
      */
     private $description;
-
-    /**
+/**
      * Category.
      *
      * @var \App\Entity\Category Category
@@ -67,8 +65,7 @@ class Recipe
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
-
-    /**
+/**
      * Tags.
      *
      * @var array
@@ -78,8 +75,7 @@ class Recipe
      * @ORM\JoinTable(name="recipes_tags")
      */
     private $tags;
-
-    /**
+/**
      * Author.
      *
      * @var \App\Entity\User
@@ -88,8 +84,7 @@ class Recipe
      * @ORM\JoinColumn (nullable=false)
      */
     private $author;
-
-    /**
+/**
      * Recipe constructor.
      */
     public function __construct()
@@ -145,7 +140,6 @@ class Recipe
     public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
-
     }
 
     /**
@@ -166,7 +160,6 @@ class Recipe
     public function setDescription(string $description): void
     {
         $this->description = $description;
-
     }
 
     /**
@@ -188,7 +181,6 @@ class Recipe
     public function setCategory(?Category $category): void
     {
         $this->category = $category;
-
     }
 
     /**
@@ -220,7 +212,7 @@ class Recipe
      */
     public function removeTag(Tag $tag): void
     {
-        if($this->tags->contains($tag)){
+        if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
         }
     }

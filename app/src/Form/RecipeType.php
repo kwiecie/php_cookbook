@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Recipe type.
  */
@@ -25,8 +26,7 @@ class RecipeType extends AbstractType
      * @var \App\Form\DataTransformer\TagsDataTransformer
      */
     private $tagsDataTransformer;
-
-    /**
+/**
      * RecipeType constructor.
      *
      * @param \App\Form\DataTransformer\TagsDataTransformer $tagsDataTransformer Tags data transformer
@@ -49,38 +49,26 @@ class RecipeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(
-            'title',
-            TextType::class,
-            [
+        $builder->add('title', TextType::class, [
                 'label' => 'label_title',
                 'required' => true,
                 'attr' => ['max_length' => 64],
-            ]
-        );
-        $builder->add(
-            'category',
-            EntityType::class,
-            [
+            ]);
+        $builder->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => function ($category) {
+
                     return $category->getTitle();
                 },
                 'label' => 'label_category',
                 'placeholder' => 'label_none',
                 'required' => true,
-            ]
-        );
-        $builder->add(
-            'description',
-            TextType::class,
-            [
+            ]);
+        $builder->add('description', TextType::class, [
                 'label' => 'label_description',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]
-        );
-
+            ]);
     }
 
     /**

@@ -1,10 +1,10 @@
 <?php
+
 /**
  * User service
  */
 
 namespace App\Service;
-
 
 use App\Entity\Category;
 use App\Entity\User;
@@ -24,8 +24,7 @@ class UserService
      * @var UserRepository
      */
     private $userRepository;
-
-    /**
+/**
      * UserService constructor
      *
      * @param UserRepository $userRepository
@@ -59,5 +58,4 @@ class UserService
     {
         return $this->userRepository->findOneById($id);
     }
-
 }

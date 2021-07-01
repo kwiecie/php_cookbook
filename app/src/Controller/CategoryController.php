@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category controller.
  */
@@ -6,9 +7,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Entity\User;
 use App\Form\CategoryType;
-use App\Repository\CategoryRepository;
 use App\Service\CategoryService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,8 +32,7 @@ class CategoryController extends AbstractController
      * @var \App\Service\CategoryService
      */
     private $categoryService;
-
-    /**
+/**
      * CategoryController constructor.
      *
      * @param \App\Service\CategoryService $categoryService Category service
@@ -61,11 +59,7 @@ class CategoryController extends AbstractController
     {
         $page = $request->query->getInt('page', 1);
         $pagination = $this->categoryService->createPaginatedList($page);
-
-        return $this->render(
-            'category/index.html.twig',
-            ['pagination' => $pagination]
-        );
+        return $this->render('category/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**
@@ -84,10 +78,7 @@ class CategoryController extends AbstractController
      */
     public function show(Category $category): Response
     {
-        return $this->render(
-            'category/show.html.twig',
-            ['category' => $category]
-        );
+        return $this->render('category/show.html.twig', ['category' => $category]);
     }
 
     /**
@@ -109,19 +100,14 @@ class CategoryController extends AbstractController
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $category->setAuthor($this->getUser());
             $this->categoryService->save($category);
             $this->addFlash('success', 'message_created_successfully');
-
             return $this->redirectToRoute('category_index');
         }
 
-        return $this->render(
-            'category/create.html.twig',
-            ['form' => $form->createView()]
-        );
+        return $this->render('category/create.html.twig', ['form' => $form->createView()]);
     }
 
 
@@ -147,21 +133,16 @@ class CategoryController extends AbstractController
     {
         $form = $this->createForm(CategoryType::class, $category, ['method' => 'PUT']);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->save($category);
             $this->addFlash('success', 'message_updated_successfully');
-
             return $this->redirectToRoute('category_index');
         }
 
-        return $this->render(
-            'category/edit.html.twig',
-            [
+        return $this->render('category/edit.html.twig', [
                 'form' => $form->createView(),
                 'category' => $category,
-            ]
-        );
+            ]);
     }
 
     /**
@@ -187,7 +168,6 @@ class CategoryController extends AbstractController
 
         $form = $this->createForm(FormType::class, $category, ['method' => 'DELETE']);
         $form->handleRequest($request);
-
         if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
             $form->submit($request->request->get($form->getName()));
         }
@@ -195,16 +175,12 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->delete($category);
             $this->addFlash('success', 'message_deleted_successfully');
-
             return $this->redirectToRoute('category_index');
         }
 
-        return $this->render(
-            'category/delete.html.twig',
-            [
+        return $this->render('category/delete.html.twig', [
                 'form' => $form->createView(),
                 'category' => $category,
-            ]
-        );
+            ]);
     }
 }

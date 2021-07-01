@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category service
  */
@@ -9,7 +10,6 @@ use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-
 
 /**
  * Class CategoryService
@@ -24,15 +24,13 @@ class CategoryService
      * @var \App\Repository\CategoryRepository
      */
     private $categoryRepository;
-
-    /**
+/**
      * Paginator
      *
      * @var \Knp\Component\Pager\PaginatorInterface
      */
     private $paginator;
-
-    /**
+/**
      * CategoryService constructor
      *
      * @param \App\Repository\CategoryRepository       $categoryRepository Category repository
@@ -53,11 +51,8 @@ class CategoryService
      */
     public function createPaginatedList(int $page): PaginationInterface
     {
-        return $this->paginator->paginate(
-            $this->categoryRepository->queryAll(),
-            $page,
-            CategoryRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
+        return $this->paginator->paginate($this->categoryRepository
+            ->queryAll(), $page, CategoryRepository::PAGINATOR_ITEMS_PER_PAGE);
     }
 
     /**

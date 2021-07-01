@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Recipe controller.
  */
@@ -35,14 +36,13 @@ class RecipeController extends AbstractController
      * @var \App\Service\RecipeService
      */
     private $recipeService;
-    /**
+/**
      * Paginator
      *
      * @var PaginatorInterface
      */
     private $paginator;
-
-    /**
+/**
      * RecipeController constructor.
      *
      * @param RecipeService $recipeService Recipe service
@@ -71,18 +71,8 @@ class RecipeController extends AbstractController
 
         $filters = [];
         $filters['category_id'] = $request->query->getInt('filters_category_id');
-
-        $pagination = $this->recipeService->createPaginatedList(
-            $request->query->getInt('page', 1),
-            $filters
-        );
-
-        return $this->render(
-            'recipe/index.html.twig',
-            ['pagination' => $pagination]
-        );
-
-
+        $pagination = $this->recipeService->createPaginatedList($request->query->getInt('page', 1), $filters);
+        return $this->render('recipe/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**
@@ -101,10 +91,7 @@ class RecipeController extends AbstractController
      */
     public function show(Recipe $recipe): Response
     {
-        return $this->render(
-            'recipe/show.html.twig',
-            ['recipe' => $recipe]
-        );
+        return $this->render('recipe/show.html.twig', ['recipe' => $recipe]);
     }
     /**
      * Create action.
@@ -129,19 +116,14 @@ class RecipeController extends AbstractController
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $recipe->setAuthor($this->getUser());
             $this->recipeService->save($recipe);
             $this->addFlash('success', 'message_created_successfully');
-
             return $this->redirectToRoute('recipe_index');
         }
 
-        return $this->render(
-            'recipe/create.html.twig',
-            ['form' => $form->createView()]
-        );
+        return $this->render('recipe/create.html.twig', ['form' => $form->createView()]);
     }
     /**
      * Edit action.
@@ -170,21 +152,16 @@ class RecipeController extends AbstractController
     {
         $form = $this->createForm(RecipeType::class, $recipe, ['method' => 'PUT']);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->recipeService->save($recipe);
             $this->addFlash('success', 'message_updated_successfully');
-
             return $this->redirectToRoute('recipe_index');
         }
 
-        return $this->render(
-            'recipe/edit.html.twig',
-            [
+        return $this->render('recipe/edit.html.twig', [
                 'form' => $form->createView(),
                 'recipe' => $recipe,
-            ]
-        );
+            ]);
     }
 
     /**
@@ -214,7 +191,6 @@ class RecipeController extends AbstractController
     {
         $form = $this->createForm(RecipeType::class, $recipe, ['method' => 'DELETE']);
         $form->handleRequest($request);
-
         if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
             $form->submit($request->request->get($form->getName()));
         }
@@ -222,17 +198,13 @@ class RecipeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->recipeService->delete($recipe);
             $this->addFlash('success', 'message_deleted_successfully');
-
             return $this->redirectToRoute('recipe_index');
         }
 
-        return $this->render(
-            'recipe/delete.html.twig',
-            [
+        return $this->render('recipe/delete.html.twig', [
                 'form' => $form->createView(),
                 'recipe' => $recipe,
-            ]
-        );
+            ]);
     }
     /**
      * Create comment action.
@@ -259,21 +231,15 @@ class RecipeController extends AbstractController
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $commentRepository->save($comment);
-
             $this->addFlash('success', 'message_created_successfully');
-
             return $this->redirectToRoute('recipe_index');
         }
 
-        return $this->render(
-            'recipe/comment_create.html.twig',
-            [
+        return $this->render('recipe/comment_create.html.twig', [
                 'form' => $form->createView(),
-                'recipe' =>$recipe,
-            ]
-        );
+                'recipe' => $recipe,
+            ]);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tag Controller.
  */
@@ -43,11 +44,7 @@ class TagController extends AbstractController
             $request->query->getInt('page', 1),
             TagRepository::PAGINATOR_ITEMS_PER_PAGE
         );
-
-        return $this->render(
-            'tag/index.html.twig',
-            ['pagination' => $pagination]
-        );
+        return $this->render('tag/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**
@@ -66,10 +63,7 @@ class TagController extends AbstractController
      */
     public function show(Tag $tag): Response
     {
-        return $this->render(
-            'tag/show.html.twig',
-            ['tag' => $tag]
-        );
+        return $this->render('tag/show.html.twig', ['tag' => $tag]);
     }
     /**
      * Create action.
@@ -93,21 +87,15 @@ class TagController extends AbstractController
         $tag = new Tag();
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            //$category->setCreatedAt(new \DateTime());
+        //$category->setCreatedAt(new \DateTime());
             //$category->setUpdatedAt(new \DateTime());
             $tagRepository->save($tag);
-
             $this->addFlash('success', 'message_created_successfully');
-
             return $this->redirectToRoute('tag_index');
         }
 
-        return $this->render(
-            'tag/create.html.twig',
-            ['form' => $form->createView()]
-        );
+        return $this->render('tag/create.html.twig', ['form' => $form->createView()]);
     }
     /**
      * Edit action.
@@ -132,23 +120,17 @@ class TagController extends AbstractController
     {
         $form = $this->createForm(TagType::class, $tag, ['method' => 'PUT']);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            //$category->setUpdatedAt(new \DateTime());
+        //$category->setUpdatedAt(new \DateTime());
             $tagRepository->save($tag);
-
             $this->addFlash('success', 'message_updated_successfully');
-
             return $this->redirectToRoute('tag_index');
         }
 
-        return $this->render(
-            'tag/edit.html.twig',
-            [
+        return $this->render('tag/edit.html.twig', [
                 'form' => $form->createView(),
                 'tag' => $tag,
-            ]
-        );
+            ]);
     }
 
     /**
@@ -174,7 +156,6 @@ class TagController extends AbstractController
     {
         $form = $this->createForm(TagType::class, $tag, ['method' => 'DELETE']);
         $form->handleRequest($request);
-
         if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
             $form->submit($request->request->get($form->getName()));
         }
@@ -182,16 +163,12 @@ class TagController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $tagRepository->delete($tag);
             $this->addFlash('success', 'message.deleted_successfully');
-
             return $this->redirectToRoute('tag_index');
         }
 
-        return $this->render(
-            'tag/delete.html.twig',
-            [
+        return $this->render('tag/delete.html.twig', [
                 'form' => $form->createView(),
                 'tag' => $tag,
-            ]
-        );
+            ]);
     }
 }

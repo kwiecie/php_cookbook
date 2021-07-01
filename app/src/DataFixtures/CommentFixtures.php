@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Comment fixture.
  */
+
 namespace App\DataFixtures;
 
 use App\Entity\Comment;

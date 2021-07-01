@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category security voter.
  */
@@ -72,7 +73,7 @@ class UserVoter extends Voter
             case 'DELETE':
                 return $this->isAuthor($subject, $user);
 
-                default:
+            default:
                 return false;
         }
     }

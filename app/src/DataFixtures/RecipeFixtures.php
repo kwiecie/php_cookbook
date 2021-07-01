@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Recipe fixtures.
  */
@@ -23,16 +24,15 @@ class RecipeFixtures extends AbstractBaseFixtures implements DependentFixtureInt
     public function loadData(ObjectManager $manager): void
     {
         $this->createMany(50, 'recipes', function ($i) {
+
             $recipe = new Recipe();
             $recipe->setTitle($this->faker->sentence);
             $recipe->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             $recipe->setDescription($this->faker->sentence);
             $recipe->setCategory($this->getRandomReference('categories'));
             $recipe->setAuthor($this->getRandomReference('admins'));
-
             return $recipe;
         });
-
         $manager->flush();
     }
 

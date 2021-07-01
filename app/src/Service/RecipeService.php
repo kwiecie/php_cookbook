@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Recipe service
  */
@@ -6,7 +7,6 @@
 namespace App\Service;
 
 use App\Entity\Recipe;
-
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -27,37 +27,36 @@ class RecipeService
      * @var RecipeRepository
      */
     private $recipeRepository;
-
-    /**
+/**
      * Paginator
      *
      * @var PaginatorInterface
      */
     private $paginator;
-
-    /**
+/**
      * Category service.
      *
      * @var CategoryService
      */
     private $categoryService;
-
-    /**
+/**
      * Comment service.
      *
      * @var CommentService
      */
     private $commentService;
-
-    /**
+/**
      * RecipeService constructor
      *
      * @param RecipeRepository $recipeRepository Recipe repository
      * @param PaginatorInterface $paginator Paginator
      * @param $categoryService
      */
-    public function __construct(RecipeRepository $recipeRepository, PaginatorInterface $paginator, CategoryService $categoryService)
-    {
+    public function __construct(
+        RecipeRepository $recipeRepository,
+        PaginatorInterface $paginator,
+        CategoryService $categoryService
+    ) {
         $this->recipeRepository = $recipeRepository;
         $this->paginator = $paginator;
         $this->categoryService = $categoryService;
@@ -73,9 +72,7 @@ class RecipeService
     {
         $resultFilters = [];
         if (isset($filters['category_id']) && is_numeric($filters['category_id'])) {
-            $category = $this->categoryService->findOneById(
-                $filters['category_id']
-            );
+            $category = $this->categoryService->findOneById($filters['category_id']);
             if (null !== $category) {
                 $resultFilters['category'] = $category;
             }
@@ -97,12 +94,8 @@ class RecipeService
     public function createPaginatedList(int $page, array $filters = []): PaginationInterface
     {
         $filters = $this->prepareFilters($filters);
-
-        return $this->paginator->paginate(
-            $this->recipeRepository->queryByFilter($filters),
-            $page,
-            RecipeRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
+        return $this->paginator->paginate($this->recipeRepository->
+        queryByFilter($filters), $page, RecipeRepository::PAGINATOR_ITEMS_PER_PAGE);
     }
 
     /**
@@ -142,5 +135,4 @@ class RecipeService
     {
         return $this->recipeRepository->findOneById($id);
     }
-
 }

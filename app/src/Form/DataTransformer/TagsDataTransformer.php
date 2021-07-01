@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tags data transformer.
  */
@@ -20,8 +21,7 @@ class TagsDataTransformer implements DataTransformerInterface
      * @var \App\Repository\TagRepository
      */
     private $repository;
-
-    /**
+/**
      * TagsDataTransformer constructor.
      *
      * @param \App\Repository\TagRepository $repository Tag repository
@@ -45,7 +45,6 @@ class TagsDataTransformer implements DataTransformerInterface
         }
 
         $tagNames = [];
-
         foreach ($tags as $tag) {
             $tagNames[] = $tag->getTitle();
         }
@@ -66,9 +65,7 @@ class TagsDataTransformer implements DataTransformerInterface
     public function reverseTransform($value): array
     {
         $tagTitles = explode(',', $value);
-
         $tags = [];
-
         foreach ($tagTitles as $tagTitle) {
             if ('' !== trim($tagTitle)) {
                 $tag = $this->repository->findOneByTitle(strtolower($tagTitle));

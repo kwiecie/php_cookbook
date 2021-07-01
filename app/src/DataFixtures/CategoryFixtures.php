@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category fixture.
  */
@@ -23,15 +24,14 @@ class CategoryFixtures extends AbstractBaseFixtures implements DependentFixtureI
     public function loadData(ObjectManager $manager): void
     {
         $this->createMany(10, 'categories', function ($i) {
+
             $category = new Category();
             $category->setTitle($this->faker->word);
             $category->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             $category->setUpdatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             $category->setAuthor($this->getRandomReference('admins'));
-
             return $category;
         });
-
         $manager->flush();
     }
     /**

@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Comment repository.
  */
+
 namespace App\Repository;
 
 use App\Entity\Comment;
@@ -89,5 +91,4 @@ class CommentRepository extends ServiceEntityRepository
         $this->_em->remove($comment);
         $this->_em->flush();
     }
-
 }

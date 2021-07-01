@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Comment service.
  */
@@ -24,15 +25,13 @@ class CommentService
      * @var CommentRepository
      */
     private $commentRepository;
-
-    /**
+/**
      * Paginator
      *
      * @param PaginatorInterface $paginator
      */
     private $paginator;
-
-    /**
+/**
      * CommentService constructor.
      *
      * @param CommentRepository         $commentRepository  Comment repository
@@ -53,11 +52,8 @@ class CommentService
      */
     public function createPaginatedList(int $page): PaginationInterface
     {
-        return $this->paginator->paginate(
-            $this->commentRepository->queryAll(),
-            $page,
-            CommentRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
+        return $this->paginator->paginate($this->commentRepository->
+        queryAll(), $page, CommentRepository::PAGINATOR_ITEMS_PER_PAGE);
     }
 
     /**

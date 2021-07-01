@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Change password form type.
  */
@@ -13,7 +14,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-
 class ChangePasswordType extends AbstractType
 {
     /**
@@ -24,7 +24,7 @@ class ChangePasswordType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('password', RepeatedType::class,[
+        $builder->add('password', RepeatedType::class, [
             'type' => PasswordType::class,
             'first_options' => ['label' => 'label_new_password'],
             'second_options' => ['label' => 'label_repeat_password'],
@@ -32,7 +32,7 @@ class ChangePasswordType extends AbstractType
                 new NotBlank(),
                 new Length([
                     'min' => 6,
-                    'max' =>15,
+                    'max' => 15,
                 ]),
             ],
         ]);
